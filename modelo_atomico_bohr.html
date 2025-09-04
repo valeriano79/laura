@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <title>Resumo do Modelo Atômico de Bohr</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        h1, h2 { color: #2E86C1; }
+        img { max-width: 100%; height: auto; }
+        .question { margin-bottom: 20px; }
+        .correct { color: green; }
+        .incorrect { color: red; }
+    </style>
+    <script>
+        function corrigir() {
+            let respostasCorretas = ['b1', 'a2', 'c3', 'd4', 'a5', 'b6', 'c7', 'd8', 'a9', 'b10'];
+            let resultado = '';
+            for (let i = 1; i <= 10; i++) {
+                let radios = document.getElementsByName('q' + i);
+                let respostaSelecionada = '';
+                for (let radio of radios) {
+                    if (radio.checked) {
+                        respostaSelecionada = radio.id;
+                        break;
+                    }
+                }
+                if (respostaSelecionada === respostasCorretas[i - 1]) {
+                    resultado += '<p class="correct">Questão ' + i + ': Correta</p>';
+                } else {
+                    resultado += '<p class="incorrect">Questão ' + i + ': Incorreta</p>';
+                }
+            }
+            document.getElementById('resultado').innerHTML = resultado;
+        }
+    </script>
+</head>
+<body>
+    <h1>Modelo Atômico de Bohr</h1>
+    <p>O modelo atômico de Bohr foi proposto por Niels Bohr em 1913 e representa uma evolução do modelo de Rutherford. Bohr introduziu a ideia de que os elétrons orbitam o núcleo em camadas de energia quantizadas.</p>
+    <h2>Diferenças entre os modelos de Rutherford e Bohr</h2>
+    <ul>
+        <li>Rutherford propôs que os elétrons orbitam o núcleo como planetas ao redor do Sol, mas não explicou a estabilidade do átomo.</li>
+        <li>Bohr introduziu níveis de energia fixos para os elétrons, explicando a estabilidade do átomo.</li>
+    </ul>
+    <h2>Estabilidade do elétron</h2>
+    <p>Segundo Bohr, os elétrons não "caem" no núcleo porque ocupam níveis de energia específicos. Eles só mudam de nível ao absorver ou emitir energia.</p>
+    <h2>Emissão e absorção de energia</h2>
+    <p>Quando um elétron muda de uma camada de energia para outra, ele emite ou absorve energia na forma de luz com frequência específica.</p>
+    <h2>Número atômico e número de massa</h2>
+    <p>O número atômico (Z) representa a quantidade de prótons no núcleo de um átomo. O número de massa (A) é a soma dos prótons e nêutrons.</p>
+    <h2>Questionário</h2>
+    <form id="quiz">
+        <div class="question">
+            <p>1. Quem propôs o modelo atômico com camadas de energia?</p>
+            <label><input type="radio" name="q1" id="a1"> Rutherford</label><br>
+            <label><input type="radio" name="q1" id="b1"> Bohr</label><br>
+            <label><input type="radio" name="q1" id="c1"> Dalton</label><br>
+            <label><input type="radio" name="q1" id="d1"> Thomson</label><br>
+            <label><input type="radio" name="q1" id="e1"> Einstein</label>
+        </div>
+        <div class="question">
+            <p>2. O que representa o número atômico?</p>
+            <label><input type="radio" name="q2" id="a2"> Número de prótons</label><br>
+            <label><input type="radio" name="q2" id="b2"> Número de nêutrons</label><br>
+            <label><input type="radio" name="q2" id="c2"> Número de elétrons</label><br>
+            <label><input type="radio" name="q2" id="d2"> Soma de prótons e nêutrons</label><br>
+            <label><input type="radio" name="q2" id="e2"> Número de camadas</label>
+        </div>
+        <div class="question">
+            <p>3. O que acontece quando um elétron absorve energia?</p>
+            <label><input type="radio" name="q3" id="a3"> Ele emite luz</label><br>
+            <label><input type="radio" name="q3" id="b3"> Ele se aproxima do núcleo</label><br>
+            <label><input type="radio" name="q3" id="c3"> Ele muda para uma camada mais externa</label><br>
+            <label><input type="radio" name="q3" id="d3"> Ele desaparece</label><br>
+            <label><input type="radio" name="q3" id="e3"> Ele se divide</label>
+        </div>
+        <div class="question">
+            <p>4. Qual é a principal contribuição de Bohr para o modelo atômico?</p>
+            <label><input type="radio" name="q4" id="a4"> Descoberta do núcleo</label><br>
+            <label><input type="radio" name="q4" id="b4"> Descoberta do elétron</label><br>
+            <label><input type="radio" name="q4" id="c4"> Modelo da esfera maciça</label><br>
+            <label><input type="radio" name="q4" id="d4"> Camadas de energia quantizadas</label><br>
+            <label><input type="radio" name="q4" id="e4"> Descoberta do nêutron</label>
+        </div>
+        <div class="question">
+            <p>5. O que representa o número de massa?</p>
+            <label><input type="radio" name="q5" id="a5"> Soma de prótons e nêutrons</label><br>
+            <label><input type="radio" name="q5" id="b5"> Número de elétrons</label><br>
+            <label><input type="radio" name="q5" id="c5"> Número de camadas</label><br>
+            <label><input type="radio" name="q5" id="d5"> Número de átomos</label><br>
+            <label><input type="radio" name="q5" id="e5"> Número de moléculas</label>
+        </div>
+        <div class="question">
+            <p>6. O que acontece quando um elétron emite energia?</p>
+            <label><input type="radio" name="q6" id="a6"> Ele desaparece</label><br>
+            <label><input type="radio" name="q6" id="b6"> Ele muda para uma camada mais interna</label><br>
+            <label><input type="radio" name="q6" id="c6"> Ele se divide</label><br>
+            <label><input type="radio" name="q6" id="d6"> Ele se afasta do núcleo</label><br>
+            <label><input type="radio" name="q6" id="e6"> Ele se torna um próton</label>
+        </div>
+        <div class="question">
+            <p>7. Qual cientista propôs que os elétrons orbitam o núcleo como planetas?</p>
+            <label><input type="radio" name="q7" id="a7"> Bohr</label><br>
+            <label><input type="radio" name="q7" id="b7"> Dalton</label><br>
+            <label><input type="radio" name="q7" id="c7"> Rutherford</label><br>
+            <label><input type="radio" name="q7" id="d7"> Thomson</label><br>
+            <label><input type="radio" name="q7" id="e7"> Einstein</label>
+        </div>
+        <div class="question">
+            <p>8. O que explica a estabilidade do átomo segundo Bohr?</p>
+            <label><input type="radio" name="q8" id="a8"> Movimento aleatório dos elétrons</label><br>
+            <label><input type="radio" name="q8" id="b8"> Presença de nêutrons</label><br>
+            <label><input type="radio" name="q8" id="c8"> Massa do núcleo</label><br>
+            <label><input type="radio" name="q8" id="d8"> Níveis de energia fixos</label><br>
+            <label><input type="radio" name="q8" id="e8"> Carga negativa do elétron</label>
+        </div>
+        <div class="question">
+            <p>9. Qual partícula tem carga positiva?</p>
+            <label><input type="radio" name="q9" id="a9"> Próton</label><br>
+            <label><input type="radio" name="q9" id="b9"> Elétron</label><br>
+            <label><input type="radio" name="q9" id="c9"> Nêutron</label><br>
+            <label><input type="radio" name="q9" id="d9"> Fóton</label><br>
+            <label><input type="radio" name="q9" id="e9"> Quark</label>
+        </div>
+        <div class="question">
+            <p>10. O que é emitido quando um elétron muda de camada?</p>
+            <label><input type="radio" name="q10" id="a10"> Som</label><br>
+            <label><input type="radio" name="q10" id="b10"> Luz</label><br>
+            <label><input type="radio" name="q10" id="c10"> Calor</label><br>
+            <label><input type="radio" name="q10" id="d10"> Matéria</label><br>
+            <label><input type="radio" name="q10" id="e10"> Gravidade</label>
+        </div>
+        <button type="button" onclick="corrigir()">Corrigir</button>
+    </form>
+    <div id="resultado"></div>
+</body>
+</html>
