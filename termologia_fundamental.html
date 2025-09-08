@@ -1,0 +1,441 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estudo de Física – Termologia (Ensino Fundamental)</title>
+  <style>
+    :root{
+      --c1:#155e75; /* teal-800 */
+      --c2:#0ea5e9; /* sky-500 */
+      --c3:#0369a1; /* sky-700 */
+      --ok:#15803d; /* green */
+      --no:#b91c1c; /* red */
+      --bg:#f8fafc; /* slate-50 */
+    }
+    html,body{margin:0;padding:0;background:var(--bg);color:#0f172a;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',Arial,'Noto Sans',sans-serif;line-height:1.6}
+    header{background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;padding:32px 16px}
+    header h1{margin:0 0 8px;font-size:1.8rem}
+    main{max-width:980px;margin:0 auto;padding:24px 16px}
+    h2{color:var(--c3);margin-top:32px;border-bottom:2px solid #e2e8f0;padding-bottom:6px}
+    .card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;margin:16px 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+    figure{margin:8px 0 0}
+    figcaption{font-size:.9rem;color:#475569}
+    .grid{display:grid;gap:16px}
+    @media(min-width:880px){.grid.cols-2{grid-template-columns:1fr 1fr}}
+    code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono','Courier New',monospace;background:#f1f5f9;padding:2px 6px;border-radius:6px}
+    .formula{display:inline-block;background:#0ea5e91a;padding:6px 10px;border-radius:8px;border:1px solid #bae6fd}
+    .quiz .question{border-top:1px dashed #cbd5e1;padding-top:14px;margin-top:14px}
+    .answers label{display:block;margin:6px 0;padding:6px;border-radius:8px;border:1px solid #e2e8f0;cursor:pointer}
+    .answers input{margin-right:8px}
+    .feedback{margin-top:8px;font-weight:600}
+    .ok{color:var(--ok)}
+    .no{color:var(--no)}
+    .controls{margin-top:16px;display:flex;flex-wrap:wrap;gap:10px}
+    button{background:var(--c3);color:#fff;border:none;border-radius:8px;padding:10px 14px;cursor:pointer}
+    button.secondary{background:#334155}
+    .score{font-size:1.1rem;margin-top:10px}
+    .note{font-size:.95rem;color:#334155}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Termologia – Estudo para o Ensino Fundamental</h1>
+    <p>Conceitos básicos sobre calor, temperatura, escalas, mudanças de estado e medidas como capacidade térmica e calor específico.</p>
+  </header>
+  <main>
+
+    <section id="definicoes" class="card">
+      <h2>1) Definições essenciais</h2>
+      <div class="grid cols-2">
+        <div>
+          <p><strong>Termologia</strong>: ramo da Física que estuda a <em>temperatura</em>, o <em>calor</em> e os fenômenos associados às trocas de energia térmica.</p>
+          <p><strong>Temperatura</strong>: indica o <em>grau de agitação</em> das partículas de um corpo. Quanto maior a agitação, maior a temperatura.</p>
+          <p><strong>Energia térmica</strong>: parcela de energia relacionada ao movimento (agitação) microscópico das partículas de um corpo.</p>
+          <p><strong>Calor</strong>: energia <em>em trânsito</em> que flui espontaneamente do corpo de maior temperatura para o de menor temperatura.</p>
+          <p><strong>Equilíbrio térmico</strong>: situação em que dois corpos em contato ficam com a <em>mesma temperatura</em>, cessando a troca líquida de calor.</p>
+          <p><strong>Calorimetria</strong>: estudo quantitativo das trocas de calor. Usa relações como <span class="formula">Q = m·c·ΔT</span> (calor sensível) e <span class="formula">Q = m·L</span> (calor latente).</p>
+          <p><strong>Calor sensível</strong>: calor que <em>altera a temperatura</em> do corpo sem mudar o estado físico (sólido, líquido, gasoso).</p>
+          <p><strong>Calor latente</strong>: calor responsável pela <em>mudança de estado</em> (fusão, vaporização, etc.) <em>sem</em> variação de temperatura durante a transição.</p>
+        </div>
+        <figure aria-label="Ilustração da ideia de temperatura como agitação das partículas">
+          <!-- SVG ilustrativo: agitação de partículas -->
+          <svg viewBox="0 0 220 160" width="100%" role="img" aria-label="Partículas mais lentas e mais rápidas">
+            <defs>
+              <radialGradient id="g" cx="50%" cy="50%" r="60%">
+                <stop offset="0%" stop-color="#bae6fd"/>
+                <stop offset="100%" stop-color="#0ea5e9"/>
+              </radialGradient>
+            </defs>
+            <rect x="0" y="0" width="220" height="160" fill="#e2f2ff" rx="12"/>
+            <!-- caixa fria -->
+            <rect x="10" y="20" width="90" height="120" fill="#fff" stroke="#94a3b8" rx="8"/>
+            <text x="55" y="18" text-anchor="middle" font-size="12" fill="#334155">Frio</text>
+            <!-- poucas partículas e pequenas setas -->
+            <circle cx="35" cy="50" r="5" fill="url(#g)"/>
+            <circle cx="60" cy="95" r="5" fill="url(#g)"/>
+            <circle cx="80" cy="70" r="5" fill="url(#g)"/>
+            <line x1="35" y1="50" x2="42" y2="48" stroke="#0ea5e9"/>
+            <line x1="60" y1="95" x2="66" y2="92" stroke="#0ea5e9"/>
+            <line x1="80" y1="70" x2="86" y2="69" stroke="#0ea5e9"/>
+            <!-- caixa quente -->
+            <rect x="120" y="20" width="90" height="120" fill="#fff" stroke="#94a3b8" rx="8"/>
+            <text x="165" y="18" text-anchor="middle" font-size="12" fill="#334155">Quente</text>
+            <!-- mais partículas e setas maiores -->
+            <circle cx="135" cy="50" r="5" fill="url(#g)"/>
+            <circle cx="150" cy="80" r="5" fill="url(#g)"/>
+            <circle cx="175" cy="60" r="5" fill="url(#g)"/>
+            <circle cx="185" cy="100" r="5" fill="url(#g)"/>
+            <line x1="135" y1="50" x2="155" y2="45" stroke="#0ea5e9" stroke-width="2"/>
+            <line x1="150" y1="80" x2="166" y2="72" stroke="#0ea5e9" stroke-width="2"/>
+            <line x1="175" y1="60" x2="195" y2="52" stroke="#0ea5e9" stroke-width="2"/>
+            <line x1="185" y1="100" x2="205" y2="90" stroke="#0ea5e9" stroke-width="2"/>
+          </svg>
+          <figcaption>Temperatura está ligada à agitação: mais agitação → maior temperatura.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="escalas" class="card">
+      <h2>2) Escalas termométricas e conversões</h2>
+      <div class="grid cols-2">
+        <div>
+          <ul>
+            <li><strong>Celsius (°C)</strong>: 0&nbsp;°C (fusão da água) e 100&nbsp;°C (ebulição da água, ao nível do mar).</li>
+            <li><strong>Fahrenheit (°F)</strong>: 32&nbsp;°F (fusão) e 212&nbsp;°F (ebulição).</li>
+            <li><strong>Kelvin (K)</strong>: escala absoluta. <span class="mono">0 K</span> é o <em>zero absoluto</em> (agitação mínima possível).</li>
+          </ul>
+          <p><strong>Fórmulas úteis:</strong></p>
+          <ul>
+            <li class="mono">°F = (9/5)·°C + 32</li>
+            <li class="mono">°C = (°F − 32)·5/9</li>
+            <li class="mono">K = °C + 273,15</li>
+            <li class="mono">°C = K − 273,15</li>
+          </ul>
+          <p class="note">Exemplo: 20&nbsp;°C → °F = (9/5)·20 + 32 = 36 + 32 = <strong>68&nbsp;°F</strong>. 20&nbsp;°C → K = 20 + 273,15 = <strong>293,15&nbsp;K</strong>.</p>
+        </div>
+        <figure aria-label="Termômetro ilustrando três escalas: Celsius, Fahrenheit e Kelvin">
+          <!-- SVG de termômetro com marcas -->
+          <svg viewBox="0 0 240 180" width="100%" role="img" aria-label="Termômetro com escalas">
+            <defs>
+              <linearGradient id="mercury" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ef4444"/>
+                <stop offset="100%" stop-color="#dc2626"/>
+              </linearGradient>
+            </defs>
+            <rect width="240" height="180" fill="#f1f5f9" rx="12"/>
+            <!-- coluna -->
+            <rect x="40" y="20" width="20" height="120" fill="#e2e8f0" rx="10"/>
+            <rect x="40" y="80" width="20" height="60" fill="url(#mercury)" rx="10"/>
+            <circle cx="50" cy="150" r="16" fill="url(#mercury)"/>
+            <!-- escalas -->
+            <g font-size="12" fill="#334155">
+              <text x="80" y="40">Celsius</text>
+              <text x="80" y="80">Fahrenheit</text>
+              <text x="80" y="120">Kelvin</text>
+              <text x="160" y="40">0 °C / 100 °C</text>
+              <text x="160" y="80">32 °F / 212 °F</text>
+              <text x="160" y="120">273,15 K / 373,15 K</text>
+            </g>
+          </svg>
+          <figcaption>Cada escala usa referências diferentes, mas medem o mesmo fenômeno: a temperatura.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="capacidade-calor" class="card">
+      <h2>3) Capacidade térmica e calor específico</h2>
+      <div class="grid cols-2">
+        <div>
+          <p><strong>Capacidade térmica (C)</strong>: quantidade de calor necessária para variar em <em>1&nbsp;°C</em> (ou 1&nbsp;K) a temperatura de um corpo inteiro.</p>
+          <p>Definição: <span class="formula">C = ΔQ/ΔT</span> (unidade no SI: <span class="mono">J/°C</span> ou <span class="mono">J/K</span>).</p>
+          <p><strong>Calor específico (c)</strong>: quantidade de calor para variar em <em>1&nbsp;°C</em> a temperatura de <em>1&nbsp;kg</em> de uma substância.</p>
+          <p>Definição: <span class="formula">c = ΔQ/(m·ΔT)</span> (unidade no SI: <span class="mono">J/(kg·°C)</span> ou <span class="mono">J/(kg·K)</span>).</p>
+          <p><strong>Relação entre ambos</strong>: <span class="formula">C = m·c</span>. Ou seja, a capacidade térmica de um corpo depende da sua massa e do material.</p>
+          <p class="note">Ex.: 2&nbsp;kg de água (c ≈ 4200 J/(kg·°C)). Para aquecer 5&nbsp;°C: Q = m·c·ΔT = 2·4200·5 = <strong>42&nbsp;000 J</strong>.</p>
+        </div>
+        <figure aria-label="Gráfico simples do aquecimento e mudança de estado">
+          <!-- Curva de aquecimento simplificada -->
+          <svg viewBox="0 0 260 180" width="100%" role="img" aria-label="Curva de aquecimento e patamares de mudança de estado">
+            <rect width="260" height="180" fill="#f1f5f9" rx="12"/>
+            <g stroke="#94a3b8" stroke-width="1">
+              <line x1="30" y1="150" x2="250" y2="150"/>
+              <line x1="30" y1="150" x2="30" y2="30"/>
+            </g>
+            <polyline fill="none" stroke="#0ea5e9" stroke-width="3" points="30,140 80,110 130,80 170,80 220,60"/>
+            <g font-size="12" fill="#334155">
+              <text x="180" y="75">Patamar (calor latente)</text>
+              <text x="70" y="105">Subida (calor sensível)</text>
+            </g>
+          </svg>
+          <figcaption>Nas mudanças de estado há patamares (calor latente). Fora deles, a temperatura sobe (calor sensível).</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="quiz" class="card quiz">
+      <h2>Questionário (15 questões)</h2>
+      <p class="note">Escolha uma alternativa em cada questão. Clique em <strong>Corrigir</strong> para ver sua pontuação e as explicações.</p>
+
+      <div class="question" id="q1">
+        <p><strong>1.</strong> O que estuda a <em>Termologia</em>?</p>
+        <div class="answers">
+          <label><input type="radio" name="q1" value="a"> O movimento dos planetas e estrelas.</label>
+          <label><input type="radio" name="q1" value="b"> Os fenômenos relacionados à temperatura, calor e trocas de energia térmica.</label>
+          <label><input type="radio" name="q1" value="c"> Apenas eletricidade e magnetismo.</label>
+          <label><input type="radio" name="q1" value="d"> Apenas óptica e ondas luminosas.</label>
+          <label><input type="radio" name="q1" value="e"> A formação de rochas e fósseis.</label>
+        </div>
+        <div class="feedback" id="f1"></div>
+      </div>
+
+      <div class="question" id="q2">
+        <p><strong>2.</strong> A melhor definição de <em>temperatura</em> é:</p>
+        <div class="answers">
+          <label><input type="radio" name="q2" value="a"> A quantidade total de matéria de um corpo.</label>
+          <label><input type="radio" name="q2" value="b"> A medida do grau de agitação das partículas de um corpo.</label>
+          <label><input type="radio" name="q2" value="c"> O volume ocupado por um corpo.</label>
+          <label><input type="radio" name="q2" value="d"> A cor observada de um material.</label>
+          <label><input type="radio" name="q2" value="e"> A massa específica do material.</label>
+        </div>
+        <div class="feedback" id="f2"></div>
+      </div>
+
+      <div class="question" id="q3">
+        <p><strong>3.</strong> Qual é a diferença entre <em>energia térmica</em> e <em>calor</em>?</p>
+        <div class="answers">
+          <label><input type="radio" name="q3" value="a"> Não há diferença: são exatamente a mesma coisa.</label>
+          <label><input type="radio" name="q3" value="b"> Energia térmica é a energia interna associada à agitação; <em>calor</em> é a energia <strong>em trânsito</strong> entre corpos a diferentes temperaturas.</label>
+          <label><input type="radio" name="q3" value="c"> Calor é uma substância chamada calórico.</label>
+          <label><input type="radio" name="q3" value="d"> Energia térmica é medida em °C, calor em kg.</label>
+          <label><input type="radio" name="q3" value="e"> Calor é uma força que empurra partículas.</label>
+        </div>
+        <div class="feedback" id="f3"></div>
+      </div>
+
+      <div class="question" id="q4">
+        <p><strong>4.</strong> Sobre <em>calor</em>, é correto afirmar que:</p>
+        <div class="answers">
+          <label><input type="radio" name="q4" value="a"> Sempre flui do corpo mais frio para o mais quente.</label>
+          <label><input type="radio" name="q4" value="b"> É energia que se transfere devido à diferença de temperatura.</label>
+          <label><input type="radio" name="q4" value="c"> É medido em °C.</label>
+          <label><input type="radio" name="q4" value="d"> É uma grandeza vetorial.</label>
+          <label><input type="radio" name="q4" value="e"> Só aparece durante mudanças de estado.</label>
+        </div>
+        <div class="feedback" id="f4"></div>
+      </div>
+
+      <div class="question" id="q5">
+        <p><strong>5.</strong> <em>Equilíbrio térmico</em> ocorre quando:</p>
+        <div class="answers">
+          <label><input type="radio" name="q5" value="a"> Os corpos têm massas iguais.</label>
+          <label><input type="radio" name="q5" value="b"> Os corpos atingem a mesma temperatura e não há troca líquida de calor.</label>
+          <label><input type="radio" name="q5" value="c"> Os corpos estão isolados do ambiente.</label>
+          <label><input type="radio" name="q5" value="d"> A energia térmica de um corpo desaparece.</label>
+          <label><input type="radio" name="q5" value="e"> Um corpo congela e o outro ferve.</label>
+        </div>
+        <div class="feedback" id="f5"></div>
+      </div>
+
+      <div class="question" id="q6">
+        <p><strong>6.</strong> <em>Calorimetria</em> é o estudo de:</p>
+        <div class="answers">
+          <label><input type="radio" name="q6" value="a"> Cargas elétricas em repouso.</label>
+          <label><input type="radio" name="q6" value="b"> Trocas de calor entre corpos e como calculá-las.</label>
+          <label><input type="radio" name="q6" value="c"> Ondas sonoras e sua velocidade.</label>
+          <label><input type="radio" name="q6" value="d"> Forças gravitacionais no espaço.</label>
+          <label><input type="radio" name="q6" value="e"> Reações químicas exotérmicas apenas.</label>
+        </div>
+        <div class="feedback" id="f6"></div>
+      </div>
+
+      <div class="question" id="q7">
+        <p><strong>7.</strong> Em <em>calor sensível</em>, a relação correta é:</p>
+        <div class="answers">
+          <label><input type="radio" name="q7" value="a"> Q = m·L</label>
+          <label><input type="radio" name="q7" value="b"> Q = m·c·ΔT</label>
+          <label><input type="radio" name="q7" value="c"> Q = P·t</label>
+          <label><input type="radio" name="q7" value="d"> Q = m·g·h</label>
+          <label><input type="radio" name="q7" value="e"> Q = V·I</label>
+        </div>
+        <div class="feedback" id="f7"></div>
+      </div>
+
+      <div class="question" id="q8">
+        <p><strong>8.</strong> <em>Calor latente</em> está associado principalmente a:</p>
+        <div class="answers">
+          <label><input type="radio" name="q8" value="a"> Mudança de temperatura sem mudança de estado.</label>
+          <label><input type="radio" name="q8" value="b"> Mudança de estado físico sem variação de temperatura durante a transição.</label>
+          <label><input type="radio" name="q8" value="c"> Compressão de gases por pistões.</label>
+          <label><input type="radio" name="q8" value="d"> Aceleração de um móvel.</label>
+          <label><input type="radio" name="q8" value="e"> Rotação de planetas.</label>
+        </div>
+        <div class="feedback" id="f8"></div>
+      </div>
+
+      <div class="question" id="q9">
+        <p><strong>9.</strong> Sobre o <em>Kelvin</em>, é correto afirmar:</p>
+        <div class="answers">
+          <label><input type="radio" name="q9" value="a"> 0 K é igual a 0 °C.</label>
+          <label><input type="radio" name="q9" value="b"> 0 K representa o zero absoluto, a menor temperatura possível.</label>
+          <label><input type="radio" name="q9" value="c"> Kelvin mede calor, não temperatura.</label>
+          <label><input type="radio" name="q9" value="d"> 273,15 K correspondem a 0 °F.</label>
+          <label><input type="radio" name="q9" value="e"> 373,15 K é o ponto de congelamento da água.</label>
+        </div>
+        <div class="feedback" id="f9"></div>
+      </div>
+
+      <div class="question" id="q10">
+        <p><strong>10.</strong> A conversão correta de Celsius para Fahrenheit é:</p>
+        <div class="answers">
+          <label><input type="radio" name="q10" value="a"> °F = (5/9)·°C + 32</label>
+          <label><input type="radio" name="q10" value="b"> °F = (9/5)·°C + 32</label>
+          <label><input type="radio" name="q10" value="c"> °F = °C + 273,15</label>
+          <label><input type="radio" name="q10" value="d"> °F = (°C − 32)·5/9</label>
+          <label><input type="radio" name="q10" value="e"> °F = °C − 273,15</label>
+        </div>
+        <div class="feedback" id="f10"></div>
+      </div>
+
+      <div class="question" id="q11">
+        <p><strong>11.</strong> A relação correta entre Celsius e Kelvin é:</p>
+        <div class="answers">
+          <label><input type="radio" name="q11" value="a"> K = °C + 273</label>
+          <label><input type="radio" name="q11" value="b"> K = °C + 273,15</label>
+          <label><input type="radio" name="q11" value="c"> K = (9/5)·°C + 32</label>
+          <label><input type="radio" name="q11" value="d"> °C = K + 273,15</label>
+          <label><input type="radio" name="q11" value="e"> K = °C − 273,15</label>
+        </div>
+        <div class="feedback" id="f11"></div>
+      </div>
+
+      <div class="question" id="q12">
+        <p><strong>12.</strong> 20&nbsp;°C equivalem a:</p>
+        <div class="answers">
+          <label><input type="radio" name="q12" value="a"> 52&nbsp;°F e 283,15&nbsp;K</label>
+          <label><input type="radio" name="q12" value="b"> 68&nbsp;°F e 293,15&nbsp;K</label>
+          <label><input type="radio" name="q12" value="c"> 72&nbsp;°F e 303,15&nbsp;K</label>
+          <label><input type="radio" name="q12" value="d"> 36&nbsp;°F e 293,15&nbsp;K</label>
+          <label><input type="radio" name="q12" value="e"> 68&nbsp;°F e 283,15&nbsp;K</label>
+        </div>
+        <div class="feedback" id="f12"></div>
+      </div>
+
+      <div class="question" id="q13">
+        <p><strong>13.</strong> <em>Capacidade térmica (C)</em> de um corpo é definida por:</p>
+        <div class="answers">
+          <label><input type="radio" name="q13" value="a"> C = m·g·h</label>
+          <label><input type="radio" name="q13" value="b"> C = ΔQ/ΔT</label>
+          <label><input type="radio" name="q13" value="c"> C = V·I</label>
+          <label><input type="radio" name="q13" value="d"> C = P·t</label>
+          <label><input type="radio" name="q13" value="e"> C = m/ΔT</label>
+        </div>
+        <div class="feedback" id="f13"></div>
+      </div>
+
+      <div class="question" id="q14">
+        <p><strong>14.</strong> <em>Calor específico (c)</em> e sua relação com C é dada por:</p>
+        <div class="answers">
+          <label><input type="radio" name="q14" value="a"> c = ΔQ/ΔT e C = c/m</label>
+          <label><input type="radio" name="q14" value="b"> c = ΔQ/(m·ΔT) e C = m·c</label>
+          <label><input type="radio" name="q14" value="c"> c = m·ΔT/ΔQ e C = c−m</label>
+          <label><input type="radio" name="q14" value="d"> c = m/ΔT e C = ΔQ·ΔT</label>
+          <label><input type="radio" name="q14" value="e"> c = ΔT/(m·ΔQ) e C = m/c</label>
+        </div>
+        <div class="feedback" id="f14"></div>
+      </div>
+
+      <div class="question" id="q15">
+        <p><strong>15.</strong> (Cálculo) Uma panela com 2&nbsp;kg de água (c ≈ 4200 J/(kg·°C)) aquece de 25&nbsp;°C para 30&nbsp;°C. O calor sensível absorvido é:</p>
+        <div class="answers">
+          <label><input type="radio" name="q15" value="a"> 4&nbsp;200 J</label>
+          <label><input type="radio" name="q15" value="b"> 8&nbsp;400 J</label>
+          <label><input type="radio" name="q15" value="c"> 21&nbsp;000 J</label>
+          <label><input type="radio" name="q15" value="d"> 42&nbsp;000 J</label>
+          <label><input type="radio" name="q15" value="e"> 84&nbsp;000 J</label>
+        </div>
+        <div class="feedback" id="f15"></div>
+      </div>
+
+      <div class="controls">
+        <button type="button" onclick="corrigir()">Corrigir</button>
+        <button class="secondary" type="button" onclick="limpar()">Limpar respostas</button>
+        <div class="score" id="score"></div>
+      </div>
+
+      <script>
+        // Gabarito e explicações específicas por questão
+        const gabarito = {
+          q1: 'b',
+          q2: 'b',
+          q3: 'b',
+          q4: 'b',
+          q5: 'b',
+          q6: 'b',
+          q7: 'b',
+          q8: 'b',
+          q9: 'b',
+          q10: 'b',
+          q11: 'b',
+          q12: 'b',
+          q13: 'b',
+          q14: 'b',
+          q15: 'd'
+        };
+
+        const explicacoes = {
+          q1: 'Termologia trata de temperatura, calor e trocas de energia térmica, não de astronomia ou geologia.',
+          q2: 'Temperatura relaciona-se ao grau de agitação das partículas: mais agitação, maior temperatura.',
+          q3: 'Energia térmica é a energia interna associada à agitação microscópica; calor é a energia em trânsito entre corpos com temperaturas diferentes.',
+          q4: 'Calor é a transferência de energia devido à diferença de temperatura (do mais quente para o mais frio).',
+          q5: 'No equilíbrio térmico os corpos atingem a mesma temperatura e não há troca líquida de calor.',
+          q6: 'Calorimetria estuda as trocas de calor e como calculá-las (Q = m·c·ΔT; Q = m·L).',
+          q7: 'Calor sensível: Q = m·c·ΔT (varia temperatura sem mudança de estado).',
+          q8: 'Calor latente: energia para mudar de estado físico sem variar a temperatura durante a transição (Q = m·L).',
+          q9: 'Kelvin é escala absoluta: 0 K é o zero absoluto (menor temperatura possível).',
+          q10: 'A fórmula correta é °F = (9/5)·°C + 32.',
+          q11: 'A conversão correta é K = °C + 273,15 (e °C = K − 273,15).',
+          q12: '20 °C = 68 °F (porque (9/5)·20 + 32 = 68) e = 293,15 K (20 + 273,15).',
+          q13: 'Capacidade térmica é C = ΔQ/ΔT, em J/°C ou J/K.',
+          q14: 'Calor específico: c = ΔQ/(m·ΔT). Para um corpo: C = m·c.',
+          q15: 'Q = m·c·ΔT = 2·4200·(30−25) = 2·4200·5 = 42 000 J.'
+        };
+
+        function corrigir(){
+          let acertos = 0, respondidas = 0;
+          for (let i=1;i<=15;i++){
+            const q = 'q'+i;
+            const radios = document.querySelectorAll(`input[name="${q}"]`);
+            const feedback = document.getElementById('f'+i);
+            let marcada = null;
+            radios.forEach(r=>{ if(r.checked) marcada = r.value; });
+            if(marcada){
+              respondidas++;
+              if(marcada === gabarito[q]){
+                acertos++;
+                feedback.innerHTML = `✅ <span class="ok">Correto.</span> <small>${explicacoes[q]}</small>`;
+              } else {
+                feedback.innerHTML = `❌ <span class="no">Incorreto.</span> <small>Resposta certa: <strong>${gabarito[q].toUpperCase()}</strong>. ${explicacoes[q]}</small>`;
+              }
+            } else {
+              feedback.innerHTML = `⚠️ <span class="no">Sem resposta.</span> <small>Marque uma alternativa.</small>`;
+            }
+          }
+          const score = document.getElementById('score');
+          score.textContent = `Você acertou ${acertos} de 15 questão(ões).`;
+        }
+
+        function limpar(){
+          for (let i=1;i<=15;i++){
+            document.querySelectorAll(`input[name="q${i}"]`).forEach(r=>r.checked=false);
+            document.getElementById('f'+i).textContent='';
+          }
+          document.getElementById('score').textContent='';
+        }
+      </script>
+    </section>
+
+  </main>
+</body>
+</html>
