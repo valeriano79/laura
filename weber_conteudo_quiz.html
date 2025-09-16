@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Max Weber – Conteúdo Corrigido e Quiz</title>
+  <style>
+    :root{
+      /* Tema claro */
+      --bg:#f8fafc;          /* slate-50 */
+      --card:#ffffff;        /* white */
+      --muted:#475569;       /* slate-600 */
+      --text:#0f172a;        /* slate-900 */
+      --subtext:#334155;     /* slate-700 */
+      --border:#e5e7eb;      /* gray-200 */
+      --primary:#2563eb;     /* blue-600 */
+      --primary-700:#1d4ed8; /* blue-700 */
+      --accent:#16a34a;      /* green-600 */
+      --danger:#dc2626;      /* red-600 */
+      --ok:#16a34a;          /* green-600 */
+    }
+
+    html {scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"}
+    a{color:var(--primary);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:saturate(150%) blur(6px);border-bottom:1px solid var(--border)}
+    nav{max-width:1100px;margin:0 auto;padding:10px 16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .brand{font-weight:800;color:var(--text);margin-right:8px}
+    .menu{display:flex;gap:8px;flex-wrap:wrap}
+    .menu a{padding:6px 10px;border-radius:8px;background:#eef2ff;color:#1e293b;border:1px solid #dbeafe}
+    .menu a:hover{background:#e0e7ff}
+
+    main{max-width:1100px;margin:24px auto;padding:0 16px}
+
+    .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;margin:16px 0;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+    h1{font-size:1.9rem;margin:10px 0 6px}
+    h2{font-size:1.5rem;margin:16px 0 6px}
+    h3{font-size:1.1rem;margin:14px 0 6px;color:var(--subtext)}
+    p{margin:8px 0}
+    ul{margin:8px 0 8px 22px}
+
+    .badge{display:inline-block;padding:2px 8px;border:1px solid var(--border);border-radius:999px;background:#f1f5f9;color:#0f172a;font-size:.78rem}
+
+    .grid{display:grid;gap:16px}
+    .grid-2{grid-template-columns:1fr}
+    @media (min-width:900px){.grid-2{grid-template-columns:1fr 1fr}}
+
+    /* Quiz */
+    .quiz-controls{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 18px}
+    button{cursor:pointer;border:none;border-radius:10px;padding:10px 14px;font-weight:700;color:#ffffff;background:var(--accent)}
+    button.secondary{background:#e2e8f0;color:#111827}
+    button:hover{filter:brightness(1.05)}
+
+    .question{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:14px;margin:12px 0}
+    .question.correct{border-left:4px solid var(--ok);background:#ecfdf5}
+    .question.incorrect{border-left:4px solid var(--danger);background:#fef2f2}
+
+    .options{display:grid;gap:8px;margin-top:8px}
+    .options label{display:flex;gap:8px;align-items:flex-start;padding:8px;border:1px solid var(--border);border-radius:10px;background:#ffffff}
+    .options input[type="radio"]{margin-top:3px}
+
+    .feedback{margin-top:8px;font-size:.95rem}
+    .ok{color:#166534}
+    .nope{color:#b91c1c}
+    .show-answer{color:#0f172a}
+
+    .score{font-weight:800;margin-top:6px}
+
+    .topo{position:fixed;right:16px;bottom:16px;background:#ffffff;color:#0f172a;border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+
+    :target{scroll-margin-top:76px}
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="brand">📘 Max Weber</div>
+      <div class="menu" aria-label="Menu de seções">
+        <a href="#intro">Visão geral</a>
+        <a href="#metodo">Sociologia compreensiva & método</a>
+        <a href="#etica">Ética protestante & capitalismo</a>
+        <a href="#tipo-ideal">Tipo ideal</a>
+        <a href="#acao-social">Ação social</a>
+        <a href="#relacao-social">Relação social</a>
+        <a href="#estado">Concepção de Estado</a>
+        <a href="#dominacao">Tipos de dominação</a>
+        <a href="#quiz">Quiz</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section id="intro" class="card">
+      <h1>Max Weber (1864–1920)</h1>
+      <p>Max Weber foi um dos mais influentes intelectuais alemães da virada do século XIX para o XX, com contribuições decisivas para a sociologia, a economia, a história e o direito, além de diálogos com a filosofia e a teologia. Considerado um dos fundadores da Sociologia como ciência, propôs uma abordagem que busca <strong>compreender</strong> os fenômenos sociais em sua <strong>especificidade histórica e cultural</strong>.</p>
+    </section>
+
+    <section id="metodo" class="card">
+      <h2>Sociologia compreensiva & método</h2>
+      <p>Ao contrário de vertentes inspiradas no positivismo, Weber argumenta que a vida social não pode ser plenamente explicada pelos métodos das ciências naturais. Enquanto estas buscam relações de causa e efeito, as ciências sociais devem <strong>interpretar as ações</strong> a partir do <strong>sentido</strong> que os próprios indivíduos lhes atribuem — a chamada <strong>sociologia compreensiva</strong>.</p>
+      <p>Weber reconhece que a pesquisa social é atravessada por <strong>valores</strong> e contextos culturais do pesquisador. Ainda assim, defende <strong>rigor metodológico</strong> e a separação entre <em>análise</em> e <em>juízos de valor</em> (transparência de pressupostos, critérios explícitos e argumentação baseada em evidências), tornando a ciência consciente de seus limites e potencialidades.</p>
+    </section>
+
+    <section id="etica" class="card">
+      <h2>A Ética Protestante e o Espírito do Capitalismo (1905)</h2>
+      <p>Em sua obra mais conhecida, Weber investiga como determinadas crenças religiosas — em especial do <strong>protestantismo calvinista</strong> — favoreceram a formação do <strong>capitalismo moderno</strong>. Elementos como <strong>ascetismo intramundano</strong>, <strong>vocação (Beruf)</strong>, <strong>disciplina</strong> e a <strong>doutrina da predestinação</strong> compõem uma ética que valoriza o trabalho metódico e a organização racional da vida.</p>
+      <p>Weber não defende causalidade única. Ele recorre à ideia de <strong>afinidades eletivas</strong> para indicar a consonância entre certos valores religiosos e a <strong>racionalidade econômica</strong> capitalista (cálculo, disciplina, reinvestimento), sem reduzir o fenômeno a uma explicação monocausal.</p>
+    </section>
+
+    <section id="tipo-ideal" class="card">
+      <h2>Tipo ideal</h2>
+      <p>O <strong>tipo ideal</strong> é um instrumento teórico que <em>não</em> descreve a realidade tal como ela é, mas organiza sua complexidade para fins analíticos. Trata-se de um <strong>modelo abstrato</strong> que destaca traços relevantes de um fenômeno, permitindo comparação e interpretação. No estudo sobre a ética protestante, por exemplo, Weber constrói o tipo ideal do <strong>protestante calvinista</strong> para evidenciar disposições culturais compatíveis com a racionalidade capitalista.</p>
+    </section>
+
+    <section id="acao-social" class="card">
+      <h2>Ação social</h2>
+      <p><strong>Ação social</strong> é a ação dotada de sentido que se <strong>orienta pelo comportamento de outros</strong>. Para analisá-la, Weber distingue quatro tipos (raramente puros na prática):</p>
+      <ul>
+        <li><strong>Racional com relação a fins</strong> (instrumental): orientada por cálculo de meios e resultados.</li>
+        <li><strong>Racional com relação a valores</strong>: orientada por convicções (éticas, religiosas, estéticas), independentemente das consequências.</li>
+        <li><strong>Afetiva</strong>: determinada por emoções e estados de ânimo.</li>
+        <li><strong>Tradicional</strong>: determinada por costumes arraigados e hábitos.</li>
+      </ul>
+    </section>
+
+    <section id="relacao-social" class="card">
+      <h2>Relação social</h2>
+      <p><strong>Relação social</strong> é a forma de interação na qual os envolvidos orientam sua conduta com base em <strong>significados compartilhados</strong> e expectativas recíprocas. Sua existência vincula-se à <em>probabilidade</em> de que ações correspondentes ao sentido esperado ocorram; pode ser transitória ou estável.</p>
+    </section>
+
+    <section id="estado" class="card">
+      <h2>Concepção weberiana de Estado</h2>
+      <p>O Estado é definido sociologicamente pelo <strong>monopólio do uso legítimo da violência</strong> dentro de um <strong>território</strong> determinado, cuja <strong>autoridade</strong> é <strong>reconhecida como legítima</strong> pelos governados. Esses elementos — coação física legítima, controle territorial e legitimidade — estruturam a manutenção da ordem e das instituições.</p>
+    </section>
+
+    <section id="dominacao" class="card">
+      <h2>Tipos de dominação</h2>
+      <p>Weber distingue três tipos de <strong>dominação legítima</strong> (tipos ideais):</p>
+      <ul>
+        <li><strong>Tradicional</strong>: fundada nos costumes e na fidelidade à tradição (ex.: patriarcalismo).</li>
+        <li><strong>Carismática</strong>: fundada na devoção a qualidades extraordinárias do líder (profeta, herói, demagogo), geralmente em contextos excepcionais.</li>
+        <li><strong>Racional-legal</strong>: fundada em normas impessoais legalmente estabelecidas; sua forma mais pura é a <strong>burocracia</strong>, característica do Estado moderno.</li>
+      </ul>
+    </section>
+
+    <section id="quiz" class="card" aria-labelledby="quiz-title">
+      <div class="badge">Quiz – 15 questões</div>
+      <h2 id="quiz-title">Verifique seus conhecimentos</h2>
+      <p>Marque uma alternativa por questão. A correção é automática: se errar, a alternativa correta será mostrada.</p>
+
+      <div class="quiz-controls">
+        <button id="btn-score">Ver pontuação</button>
+        <button id="btn-reset" class="secondary">Reiniciar quiz</button>
+        <div id="score" class="score" aria-live="polite"></div>
+      </div>
+
+      <div id="questions">
+        <!-- 1 -->
+        <div class="question" data-id="q1" data-correct="c">
+          <p><strong>1.</strong> Para Weber, diferentemente do positivismo, as ciências sociais devem principalmente:</p>
+          <div class="options">
+            <label><input type="radio" name="q1" value="a"> Estabelecer leis universais por meio de experimentos.</label>
+            <label><input type="radio" name="q1" value="b"> Descrever apenas fatos objetivos sem interpretações.</label>
+            <label><input type="radio" name="q1" value="c"> Interpretar o <em>sentido</em> das ações segundo os próprios atores.</label>
+            <label><input type="radio" name="q1" value="d"> Explicar fenômenos somente por causalidade material.</label>
+          </div>
+          <div class="feedback" id="fb-q1" aria-live="polite"></div>
+        </div>
+
+        <!-- 2 -->
+        <div class="question" data-id="q2" data-correct="b">
+          <p><strong>2.</strong> A sociologia compreensiva pode ser definida como:</p>
+          <div class="options">
+            <label><input type="radio" name="q2" value="a"> Método estatístico para prever comportamentos.</label>
+            <label><input type="radio" name="q2" value="b"> Abordagem que busca entender o significado subjetivo das ações.</label>
+            <label><input type="radio" name="q2" value="c"> Técnica laboratorial para medir emoções.</label>
+            <label><input type="radio" name="q2" value="d"> Doutrina normativa sobre valores morais.</label>
+          </div>
+          <div class="feedback" id="fb-q2" aria-live="polite"></div>
+        </div>
+
+        <!-- 3 -->
+        <div class="question" data-id="q3" data-correct="a">
+          <p><strong>3.</strong> Em relação a valores e objetividade, Weber defende que:</p>
+          <div class="options">
+            <label><input type="radio" name="q3" value="a"> O pesquisador deve ser transparente sobre pressupostos e evitar juízos de valor na análise.</label>
+            <label><input type="radio" name="q3" value="b"> A ciência é completamente neutra e alheia à cultura.</label>
+            <label><input type="radio" name="q3" value="c"> Resultados devem seguir preferências políticas do pesquisador.</label>
+            <label><input type="radio" name="q3" value="d"> Valores tornam impossível qualquer objetividade.</label>
+          </div>
+          <div class="feedback" id="fb-q3" aria-live="polite"></div>
+        </div>
+
+        <!-- 4 -->
+        <div class="question" data-id="q4" data-correct="d">
+          <p><strong>4.</strong> O <em>tipo ideal</em> é melhor descrito como:</p>
+          <div class="options">
+            <label><input type="radio" name="q4" value="a"> A realidade tal como observada empiricamente.</label>
+            <label><input type="radio" name="q4" value="b"> Um padrão moral a ser seguido pela sociedade.</label>
+            <label><input type="radio" name="q4" value="c"> Uma lei natural que rege o comportamento humano.</label>
+            <label><input type="radio" name="q4" value="d"> Um modelo analítico abstrato para organizar e comparar fenômenos.</label>
+          </div>
+          <div class="feedback" id="fb-q4" aria-live="polite"></div>
+        </div>
+
+        <!-- 5 -->
+        <div class="question" data-id="q5" data-correct="b">
+          <p><strong>5.</strong> No estudo de Weber sobre religião e economia, o exemplo de tipo ideal utilizado é o do:</p>
+          <div class="options">
+            <label><input type="radio" name="q5" value="a"> Empresário rentista medieval.</label>
+            <label><input type="radio" name="q5" value="b"> Protestante calvinista ascético.</label>
+            <label><input type="radio" name="q5" value="c"> Monge beneditino.</label>
+            <label><input type="radio" name="q5" value="d"> Mercador renascentista hedonista.</label>
+          </div>
+          <div class="feedback" id="fb-q5" aria-live="polite"></div>
+        </div>
+
+        <!-- 6 -->
+        <div class="question" data-id="q6" data-correct="c">
+          <p><strong>6.</strong> “Afinidades eletivas”, em Weber, refere-se a:</p>
+          <div class="options">
+            <label><input type="radio" name="q6" value="a"> Prova de que religião causa diretamente o capitalismo.</label>
+            <label><input type="radio" name="q6" value="b"> Ausência de relação entre cultura e economia.</label>
+            <label><input type="radio" name="q6" value="c"> Consonância entre esferas (p. ex., religiosa e econômica) sem monocausalidade.</label>
+            <label><input type="radio" name="q6" value="d"> Substituição da explicação histórica por leis naturais.</label>
+          </div>
+          <div class="feedback" id="fb-q6" aria-live="polite"></div>
+        </div>
+
+        <!-- 7 -->
+        <div class="question" data-id="q7" data-correct="a">
+          <p><strong>7.</strong> Entre os elementos associados à ética protestante calvinista estão:</p>
+          <div class="options">
+            <label><input type="radio" name="q7" value="a"> Ascetismo intramundano, disciplina, vocação e predestinação.</label>
+            <label><input type="radio" name="q7" value="b"> Hedonismo, ociosidade e relativismo moral.</label>
+            <label><input type="radio" name="q7" value="c"> Nihilismo, ceticismo e ritual mágico.</label>
+            <label><input type="radio" name="q7" value="d"> Militarismo, expansionismo e culto estatal.</label>
+          </div>
+          <div class="feedback" id="fb-q7" aria-live="polite"></div>
+        </div>
+
+        <!-- 8 -->
+        <div class="question" data-id="q8" data-correct="d">
+          <p><strong>8.</strong> Para Weber, o Estado é definido, sobretudo, por:</p>
+          <div class="options">
+            <label><input type="radio" name="q8" value="a"> Controle da economia de mercado.</label>
+            <label><input type="radio" name="q8" value="b"> Representação direta da vontade divina.</label>
+            <label><input type="radio" name="q8" value="c"> Propriedade dos meios de produção.</label>
+            <label><input type="radio" name="q8" value="d"> Monopólio do uso legítimo da violência em um território.</label>
+          </div>
+          <div class="feedback" id="fb-q8" aria-live="polite"></div>
+        </div>
+
+        <!-- 9 -->
+        <div class="question" data-id="q9" data-correct="b">
+          <p><strong>9.</strong> Assinale a alternativa correta sobre os elementos do Estado em Weber:</p>
+          <div class="options">
+            <label><input type="radio" name="q9" value="a"> Violência legítima e carisma do governante são suficientes, território é dispensável.</label>
+            <label><input type="radio" name="q9" value="b"> Monopólio da coação física legítima, território e legitimidade do poder.</label>
+            <label><input type="radio" name="q9" value="c"> Apenas legalidade formal basta para definir o Estado.</label>
+            <label><input type="radio" name="q9" value="d"> O reconhecimento dos governados é irrelevante.</label>
+          </div>
+          <div class="feedback" id="fb-q9" aria-live="polite"></div>
+        </div>
+
+        <!-- 10 -->
+        <div class="question" data-id="q10" data-correct="c">
+          <p><strong>10.</strong> Ação social é aquela que:</p>
+          <div class="options">
+            <label><input type="radio" name="q10" value="a"> Ocorre apenas no plano interno (psíquico), sem relação com outros.</label>
+            <label><input type="radio" name="q10" value="b"> É qualquer movimento corporal voluntário.</label>
+            <label><input type="radio" name="q10" value="c"> Se orienta pelo comportamento de outros e tem sentido para o ator.</label>
+            <label><input type="radio" name="q10" value="d"> Exige sempre cálculo utilitário estrito.</label>
+          </div>
+          <div class="feedback" id="fb-q10" aria-live="polite"></div>
+        </div>
+
+        <!-- 11 -->
+        <div class="question" data-id="q11" data-correct="a">
+          <p><strong>11.</strong> Exemplo típico de ação <em>racional com relação a fins</em> é:</p>
+          <div class="options">
+            <label><input type="radio" name="q11" value="a"> Escolher o meio mais eficiente para alcançar um objetivo específico.</label>
+            <label><input type="radio" name="q11" value="b"> Agir por tradição sem refletir.</label>
+            <label><input type="radio" name="q11" value="c"> Agir movido por emoção momentânea.</label>
+            <label><input type="radio" name="q11" value="d"> Agir por convicção ética apesar do custo.</label>
+          </div>
+          <div class="feedback" id="fb-q11" aria-live="polite"></div>
+        </div>
+
+        <!-- 12 -->
+        <div class="question" data-id="q12" data-correct="d">
+          <p><strong>12.</strong> A ação <em>racional com relação a valores</em> caracteriza-se por:</p>
+          <div class="options">
+            <label><input type="radio" name="q12" value="a"> Ser sempre mais eficiente que outras ações.</label>
+            <label><input type="radio" name="q12" value="b"> Resultar de hábitos irrefletidos.</label>
+            <label><input type="radio" name="q12" value="c"> Basear-se em emoções intensas e espontâneas.</label>
+            <label><input type="radio" name="q12" value="d"> Orientar-se por convicções, independentemente das consequências.</label>
+          </div>
+          <div class="feedback" id="fb-q12" aria-live="polite"></div>
+        </div>
+
+        <!-- 13 -->
+        <div class="question" data-id="q13" data-correct="b">
+          <p><strong>13.</strong> Na dominação <em>racional-legal</em>, a obediência é prestada principalmente a:</p>
+          <div class="options">
+            <label><input type="radio" name="q13" value="a"> Tradições consagradas ao longo do tempo.</label>
+            <label><input type="radio" name="q13" value="b"> Normas impessoais e cargos legalmente estabelecidos.</label>
+            <label><input type="radio" name="q13" value="c"> Carisma pessoal do líder.</label>
+            <label><input type="radio" name="q13" value="d"> Vínculos afetivos entre governantes e governados.</label>
+          </div>
+          <div class="feedback" id="fb-q13" aria-live="polite"></div>
+        </div>
+
+        <!-- 14 -->
+        <div class="question" data-id="q14" data-correct="a">
+          <p><strong>14.</strong> A dominação <em>carismática</em> está associada a:</p>
+          <div class="options">
+            <label><input type="radio" name="q14" value="a"> Qualidades extraordinárias atribuídas a um líder em contextos excepcionais.</label>
+            <label><input type="radio" name="q14" value="b"> Regras e rotinas burocráticas.</label>
+            <label><input type="radio" name="q14" value="c"> Costumes e tradições herdadas.</label>
+            <label><input type="radio" name="q14" value="d"> Eleição por sorteio.</label>
+          </div>
+          <div class="feedback" id="fb-q14" aria-live="polite"></div>
+        </div>
+
+        <!-- 15 -->
+        <div class="question" data-id="q15" data-correct="d">
+          <p><strong>15.</strong> <em>Relação social</em>, em Weber, implica:</p>
+          <div class="options">
+            <label><input type="radio" name="q15" value="a"> Apenas ações internas, sem interação.</label>
+            <label><input type="radio" name="q15" value="b"> Isolamento dos indivíduos e ausência de expectativas.</label>
+            <label><input type="radio" name="q15" value="c"> Conformidade automática às leis naturais.</label>
+            <label><input type="radio" name="q15" value="d"> Interação orientada por significados compartilhados e expectativas recíprocas.</label>
+          </div>
+          <div class="feedback" id="fb-q15" aria-live="polite"></div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <a class="topo" href="#intro" title="Voltar ao topo">↑ Topo</a>
+
+  <script>
+    function getCorrectLabel(questionEl){
+      const correct = questionEl.dataset.correct;
+      const labels = questionEl.querySelectorAll('.options label');
+      for(const lbl of labels){
+        const input = lbl.querySelector('input');
+        if(input && input.value === correct){
+          return lbl;
+        }
+      }
+      return null;
+    }
+
+    function updateFeedback(questionEl){
+      const id = questionEl.dataset.id;
+      const correct = questionEl.dataset.correct;
+      const fb = document.getElementById('fb-' + id);
+      const checked = questionEl.querySelector('input[type="radio"]:checked');
+      questionEl.classList.remove('correct','incorrect');
+      fb.textContent = '';
+      if(!checked){ return; }
+      const selected = checked.value;
+      const correctLbl = getCorrectLabel(questionEl);
+      const correctText = correctLbl ? correctLbl.textContent.trim() : '(resposta correta)';
+      if(selected === correct){
+        questionEl.classList.add('correct');
+        fb.innerHTML = '<span class="ok">✅ Correto!</span>';
+      } else {
+        questionEl.classList.add('incorrect');
+        fb.innerHTML = '<span class="nope">❌ Resposta incorreta.</span> <span class="show-answer">Correta: <strong>' + correctText + '</strong></span>';
+      }
+    }
+
+    function scoreQuiz(){
+      const questions = document.querySelectorAll('.question');
+      let correctCount = 0, answered = 0;
+      questions.forEach(q => {
+        const checked = q.querySelector('input[type="radio"]:checked');
+        if(checked){
+          answered++;
+          if(checked.value === q.dataset.correct){ correctCount++; }
+        }
+      });
+      const scoreEl = document.getElementById('score');
+      scoreEl.textContent = `Pontuação: ${correctCount} / ${questions.length} (respondidas: ${answered})`;
+    }
+
+    function resetQuiz(){
+      document.getElementById('score').textContent = '';
+      document.querySelectorAll('.question').forEach(q => {
+        q.classList.remove('correct','incorrect');
+        const fb = document.getElementById('fb-' + q.dataset.id);
+        if(fb) fb.textContent = '';
+        q.querySelectorAll('input[type="radio"]').forEach(i => { i.checked = false; });
+      });
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.question .options input[type="radio"]').forEach(input => {
+        input.addEventListener('change', (e) => {
+          const q = e.target.closest('.question');
+          updateFeedback(q);
+        });
+      });
+      document.getElementById('btn-score').addEventListener('click', scoreQuiz);
+      document.getElementById('btn-reset').addEventListener('click', resetQuiz);
+    });
+  </script>
+</body>
+</html>
