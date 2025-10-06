@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Íons e Distribuição Eletrônica - Química</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 5px solid #4facfe;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 2px solid #4facfe;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #34495e;
+            margin: 20px 0 15px 0;
+            font-size: 1.4em;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+            font-size: 1.1em;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .image-caption {
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .formula {
+            background: #e8f4f8;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            margin: 15px 0;
+            border-left: 4px solid #4facfe;
+        }
+
+        .quiz-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 40px;
+            color: white;
+        }
+
+        .quiz-title {
+            text-align: center;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .question {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .question h4 {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .options {
+            list-style: none;
+        }
+
+        .options li {
+            margin: 10px 0;
+            padding: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .options li:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(5px);
+        }
+
+        .options li.selected {
+            background: rgba(255,255,255,0.3);
+            border-color: #4facfe;
+        }
+
+        .options li.correct {
+            background: rgba(46, 204, 113, 0.8);
+            border-color: #2ecc71;
+        }
+
+        .options li.incorrect {
+            background: rgba(231, 76, 60, 0.8);
+            border-color: #e74c3c;
+        }
+
+        .quiz-buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .score {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .score.excellent { color: #2ecc71; }
+        .score.good { color: #f39c12; }
+        .score.needs-improvement { color: #e74c3c; }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            .quiz-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Íons e Distribuição Eletrônica</h1>
+            <p class="subtitle">Estudo Completo sobre Química Atômica</p>
+        </header>
+
+        <div class="content-section">
+            <h2>ÍONS</h2>
+            <p>Os íons são espécies químicas que se formam quando substâncias ou átomos eletricamente neutros perdem ou ganham elétrons. Portanto, eles podem ser carregados positivamente, recebendo o nome de <strong>cátions</strong>; ou carregados negativamente, recebendo o nome de <strong>ânions</strong>.</p>
+            
+            <div class="image-container">
+                <img src="anions_cations_1.png" alt="Diferença entre cátions e ânions">
+                <p class="image-caption">Figura 1: Diferença estrutural entre cátions (carregados positivamente) e ânions (carregados negativamente)</p>
+            </div>
+
+            <p>A carga dos íons gerados é numericamente igual ao número de elétrons que foram ganhos ou perdidos pela espécie química. Os íons são formados durante uma reação química. A propensão para se tornar um cátion ou um ânion depende de duas ordens de grandeza: energia de ionização e afinidade eletrônica. Em geral, os metais tendem a se tornar cátions e os não metais tendem a se tornar ânions.</p>
+
+            <p>Em resumo, íons são espécies carregadas com cargas positivas ou negativas, formadas quando um átomo neutro perde ou ganha elétrons.</p>
+
+            <h3>Aplicações dos íons no cotidiano</h3>
+            <p>Por serem eletricamente carregados, os íons têm a capacidade de fazer com que algumas soluções se tornem condutoras de corrente elétrica. Essas são as chamadas <strong>soluções eletrolíticas</strong>. Foi a partir do entendimento dessas soluções que dispositivos de geração de energia elétrica, como as pilhas e as baterias, foram fabricados.</p>
+
+            <div class="image-container">
+                <img src="cations_anions_2.png" alt="Exemplos de cátions e ânions">
+                <p class="image-caption">Figura 2: Exemplos de cátions e ânions comuns na natureza</p>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Semelhanças Atômicas</h2>
+            <p>Na natureza os átomos podem apresentar certa semelhança atômica. Essa semelhança está associada à quantidade de prótons e nêutrons presentes no núcleo de um átomo, assim como com a quantidade de elétrons existentes na eletrosfera. Vamos conhecer as categorias de semelhanças atômicas:</p>
+
+            <h3>Tipos de Semelhanças Atômicas</h3>
+            <p><strong>Isóbaros</strong> - São as espécies atômicas que apresentam o mesmo número de massa, porém, diferentes números atômicos. Exemplos: Ca e Ar.</p>
+            
+            <p><strong>Isótonos</strong> - São as espécies atômicas que apresentam a mesma quantidade de nêutrons. Exemplos: B e Be.</p>
+            
+            <p><strong>Isoeletrônicos</strong> - São as espécies atômicas que apresentam a mesma quantidade de elétrons. Exemplos: Na+ e Be.</p>
+
+            <p>Além dessas 3 categorias, existem os <strong>isótopos</strong>, átomos que apresentam semelhanças no número de prótons, mas que variam no número de nêutrons. São átomos que possuem em comum o mesmo número de prótons, pertencendo ao mesmo elemento químico, mas diferentes números de massa e diferentes números de nêutrons. Os isótopos do hidrogênio recebem nomes especiais: <strong>Prótio</strong> (0 nêutron), <strong>Deutério</strong> (1 nêutron) e <strong>Trítio</strong> (2 nêutrons).</p>
+        </div>
+
+        <div class="content-section">
+            <h2>DISTRIBUIÇÃO ELETRÔNICA EM ÁTOMOS NEUTROS</h2>
+            <p>A partir do modelo atômico de Bohr, que é um aperfeiçoamento do modelo atômico de Rutherford, tornou-se possível compreender alguns fenômenos que, anteriormente, não eram explicados com eficácia pelos modelos atômicos anteriores.</p>
+
+            <p>Nas décadas de 1920 e 1930, os cientistas analisaram profundamente os espectros atômicos e observaram, por meio de equipamentos avançados, que as bandas refletidas no espectro dos átomos apresentavam estruturas de reflexão finas, ou seja, algumas linhas eram compostas por duas ou mais linhas próximas.</p>
+
+            <p>Essas linhas muito próximas foram chamadas pelos cientistas de <strong>subníveis de energia</strong>. Então, uma linha espectral identificada no modelo de Bohr corresponde a uma camada. Já as linhas muito próximas, identificadas por cientistas posteriores ao modelo de Bohr, correspondem aos subníveis de energia.</p>
+
+            <p>O número de subnível por camadas é dado pelo número de camadas, por exemplo, a camada L é o número 2, então, ela apresenta dois subníveis. Assim, temos sete camadas e sete subníveis designados pelas letras minúsculas <strong>s, p, d, f, g, h e i</strong>. Os subníveis g, h, i são meramente teóricos.</p>
+
+            <div class="formula">
+                <strong>Para calcular o número de elétrons por nível (camada):</strong><br>
+                X = 2n², em que n é igual ao número da camada.
+            </div>
+
+            <div class="formula">
+                <strong>Para calcular o número de elétrons por subnível:</strong><br>
+                X = 2(l + 1), em que l é igual ao número do subnível.
+            </div>
+
+            <p>De acordo com Bohr, a energia da camada aumenta com o distanciamento do núcleo. Isso também acontece com os subníveis de energia, que aumentam com o distanciamento do núcleo.</p>
+        </div>
+
+        <div class="content-section">
+            <h2>DIAGRAMA DE LINUS PAULING</h2>
+            <p>A partir dessas descobertas, elaborou-se um diagrama de diagonais, que indica a ordem crescente de energia dos subníveis de energia.</p>
+
+            <div class="image-container">
+                <img src="diagrama_pauling_1.jpg" alt="Diagrama de Linus Pauling">
+                <p class="image-caption">Figura 3: Diagrama de Linus Pauling mostrando a ordem crescente de energia dos subníveis</p>
+            </div>
+
+            <h3>Distribuição Eletrônica</h3>
+            <p>Os elétrons de um átomo estão organizados em camadas ao redor do núcleo, como se fossem andares de um prédio. Eles sempre ocupam os lugares de menor energia primeiro, pois isso deixa o átomo mais estável.</p>
+
+            <p>Esse arranjo segue um padrão chamado diagrama de Linus Pauling, que nos ajuda a entender quantos elétrons podem existir em cada camada e em cada subnível.</p>
+
+            <p>Quando os elétrons estão distribuídos da maneira mais estável possível, dizemos que o átomo está no <strong>estado fundamental</strong>. Se receberem energia, podem saltar para camadas mais externas, mas depois voltam ao normal, liberando essa energia na forma de luz ou calor.</p>
+
+            <p>Para fazer a distribuição eletrônica utilizando o diagrama de Pauling, analisamos a seguinte legenda: <strong>ns</strong> (n = nível e s = subnível).</p>
+
+            <h3>Distribuição eletrônica de átomos</h3>
+            <p>A distribuição eletrônica pelo diagrama de Pauling, além de fornecer o número de elétrons por subníveis, também apresenta o número de elétrons por nível ou camada.</p>
+
+            <p>Como exemplo, observe a distribuição eletrônica do neônio, em seu estado fundamental. Observe que os elétrons estão distribuídos em dois níveis de energia, ou seja, duas camadas. O nível (camada) mais externo será denominado de <strong>camada de valência</strong>, neste caso, o nível 2 (ou camada L), que apresenta oito elétrons.</p>
+
+            <div class="formula">
+                <strong>Camada de valência</strong> - É o nível que corresponde ao maior valor de n em uma distribuição eletrônica.<br><br>
+                <strong>Subnível de maior energia</strong> - É o último preenchido com elétrons.<br><br>
+                No caso do neônio, o subnível de maior energia é o 2p⁶.
+            </div>
+        </div>
+
+        <div class="quiz-container">
+            <h2 class="quiz-title">Questionário Interativo</h2>
+            <div id="quiz"></div>
+            <div class="quiz-buttons">
+                <button class="btn" id="submitBtn" onclick="checkAnswers()">Verificar Respostas</button>
+                <button class="btn" id="resetBtn" onclick="resetQuiz()" style="display: none;">Refazer Questionário</button>
+            </div>
+            <div id="results" class="results" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "O que são íons?",
+                options: [
+                    "Átomos eletricamente neutros que não perdem nem ganham elétrons.",
+                    "Espécies químicas que se formam quando átomos perdem ou ganham elétrons, tornando-se carregados.",
+                    "Partículas subatômicas encontradas no núcleo do átomo.",
+                    "Moléculas que possuem apenas um tipo de átomo.",
+                    "Elementos químicos que não reagem com outros elementos."
+                ],
+                answer: 1
+            },
+            {
+                question: "Qual o nome das espécies químicas carregadas positivamente?",
+                options: [
+                    "Ânions",
+                    "Isótopos",
+                    "Cátions",
+                    "Isóbaros",
+                    "Isoeletrônicos"
+                ],
+                answer: 2
+            },
+            {
+                question: "Qual o nome das espécies químicas carregadas negativamente?",
+                options: [
+                    "Cátions",
+                    "Isótonos",
+                    "Isótopos",
+                    "Ânions",
+                    "Isoeletrônicos"
+                ],
+                answer: 3
+            },
+            {
+                question: "Qual a principal aplicação dos íons mencionada no texto?",
+                options: [
+                    "Formação de ligas metálicas.",
+                    "Geração de luz em lâmpadas fluorescentes.",
+                    "Tornar soluções condutoras de corrente elétrica, essencial para pilhas e baterias.",
+                    "Produção de energia nuclear.",
+                    "Criação de novos elementos químicos."
+                ],
+                answer: 2
+            },
+            {
+                question: "O que são isóbaros?",
+                options: [
+                    "Espécies atômicas com o mesmo número de prótons, mas diferentes nêutrons.",
+                    "Espécies atômicas com o mesmo número de massa, mas diferentes números atômicos.",
+                    "Espécies atômicas com a mesma quantidade de elétrons.",
+                    "Espécies atômicas com a mesma quantidade de nêutrons.",
+                    "Espécies atômicas com o mesmo número de massa e o mesmo número atômico."
+                ],
+                answer: 1
+            },
+            {
+                question: "Átomos que apresentam a mesma quantidade de nêutrons são chamados de:",
+                options: [
+                    "Isótopos",
+                    "Isóbaros",
+                    "Isoeletrônicos",
+                    "Isótonos",
+                    "Íons"
+                ],
+                answer: 3
+            },
+            {
+                question: "Qual o termo para espécies atômicas que apresentam a mesma quantidade de elétrons?",
+                options: [
+                    "Isótopos",
+                    "Isóbaros",
+                    "Isoeletrônicos",
+                    "Isótonos",
+                    "Cátions"
+                ],
+                answer: 2
+            },
+            {
+                question: "Os isótopos são átomos que possuem em comum o mesmo número de:",
+                options: [
+                    "Nêutrons",
+                    "Massa",
+                    "Elétrons",
+                    "Prótons",
+                    "Camadas eletrônicas"
+                ],
+                answer: 3
+            },
+            {
+                question: "Qual modelo atômico é mencionado como aperfeiçoamento do modelo de Rutherford e que permitiu compreender fenômenos antes inexplicados?",
+                options: [
+                    "Modelo de Dalton",
+                    "Modelo de Thomson",
+                    "Modelo de Bohr",
+                    "Modelo Quântico",
+                    "Modelo de Linus Pauling"
+                ],
+                answer: 2
+            },
+            {
+                question: "Como são chamadas as linhas muito próximas observadas nos espectros atômicos, que correspondem a subníveis de energia?",
+                options: [
+                    "Camadas eletrônicas",
+                    "Bandas de valência",
+                    "Subníveis de energia",
+                    "Órbitas atômicas",
+                    "Níveis de ionização"
+                ],
+                answer: 2
+            },
+            {
+                question: "Qual a fórmula para calcular o número máximo de elétrons por nível (camada)?",
+                options: [
+                    "X = n²",
+                    "X = 2n",
+                    "X = 2n²",
+                    "X = n + 2",
+                    "X = 2(n+1)"
+                ],
+                answer: 2
+            },
+            {
+                question: "Quais são as letras que designam os subníveis de energia?",
+                options: [
+                    "a, b, c, d, e, f, g",
+                    "K, L, M, N, O, P, Q",
+                    "s, p, d, f, g, h, i",
+                    "x, y, z, w",
+                    "1, 2, 3, 4, 5, 6, 7"
+                ],
+                answer: 2
+            },
+            {
+                question: "O que o diagrama de Linus Pauling indica?",
+                options: [
+                    "A ordem decrescente de energia dos subníveis de energia.",
+                    "A ordem crescente de energia dos subníveis de energia.",
+                    "A quantidade de prótons em um átomo.",
+                    "A massa atômica dos elementos.",
+                    "A afinidade eletrônica dos elementos."
+                ],
+                answer: 1
+            },
+            {
+                question: "Quando os elétrons estão distribuídos da maneira mais estável possível, dizemos que o átomo está em qual estado?",
+                options: [
+                    "Estado excitado",
+                    "Estado iônico",
+                    "Estado fundamental",
+                    "Estado de valência",
+                    "Estado de transição"
+                ],
+                answer: 2
+            },
+            {
+                question: "O que é a camada de valência?",
+                options: [
+                    "O nível que corresponde ao menor valor de n em uma distribuição eletrônica.",
+                    "O nível que corresponde ao maior valor de n em uma distribuição eletrônica.",
+                    "O subnível de menor energia preenchido com elétrons.",
+                    "A camada mais próxima do núcleo.",
+                    "A camada que contém apenas um elétron."
+                ],
+                answer: 1
+            }
+        ];
+
+        let userAnswers = [];
+
+        function loadQuiz() {
+            const quizContainer = document.getElementById('quiz');
+            let quizHTML = '';
+
+            questions.forEach((q, index) => {
+                quizHTML += `
+                    <div class="question">
+                        <h4>Questão ${index + 1}: ${q.question}</h4>
+                        <ul class="options">
+                `;
+                
+                q.options.forEach((option, optionIndex) => {
+                    quizHTML += `
+                        <li onclick="selectOption(${index}, ${optionIndex})" data-question="${index}" data-option="${optionIndex}">
+                            ${String.fromCharCode(97 + optionIndex)}) ${option}
+                        </li>
+                    `;
+                });
+                
+                quizHTML += `
+                        </ul>
+                    </div>
+                `;
+            });
+
+            quizContainer.innerHTML = quizHTML;
+        }
+
+        function selectOption(questionIndex, optionIndex) {
+            // Remove previous selection for this question
+            const questionOptions = document.querySelectorAll(`[data-question="${questionIndex}"]`);
+            questionOptions.forEach(option => option.classList.remove('selected'));
+            
+            // Add selection to clicked option
+            const selectedOption = document.querySelector(`[data-question="${questionIndex}"][data-option="${optionIndex}"]`);
+            selectedOption.classList.add('selected');
+            
+            // Store user answer
+            userAnswers[questionIndex] = optionIndex;
+        }
+
+        function checkAnswers() {
+            let correctAnswers = 0;
+            
+            questions.forEach((q, index) => {
+                const questionOptions = document.querySelectorAll(`[data-question="${index}"]`);
+                const userAnswer = userAnswers[index];
+                const correctAnswer = q.answer;
+                
+                questionOptions.forEach((option, optionIndex) => {
+                    if (optionIndex === correctAnswer) {
+                        option.classList.add('correct');
+                    } else if (optionIndex === userAnswer && userAnswer !== correctAnswer) {
+                        option.classList.add('incorrect');
+                    }
+                });
+                
+                if (userAnswer === correctAnswer) {
+                    correctAnswers++;
+                }
+            });
+            
+            showResults(correctAnswers);
+            document.getElementById('submitBtn').style.display = 'none';
+            document.getElementById('resetBtn').style.display = 'inline-block';
+        }
+
+        function showResults(correctAnswers) {
+            const resultsDiv = document.getElementById('results');
+            const percentage = Math.round((correctAnswers / questions.length) * 100);
+            
+            let scoreClass = '';
+            let message = '';
+            
+            if (percentage >= 80) {
+                scoreClass = 'excellent';
+                message = 'Excelente! Você domina bem o conteúdo!';
+            } else if (percentage >= 60) {
+                scoreClass = 'good';
+                message = 'Bom trabalho! Continue estudando para melhorar ainda mais.';
+            } else {
+                scoreClass = 'needs-improvement';
+                message = 'É importante revisar o conteúdo. Continue estudando!';
+            }
+            
+            resultsDiv.innerHTML = `
+                <div class="score ${scoreClass}">${correctAnswers}/${questions.length} (${percentage}%)</div>
+                <p>${message}</p>
+            `;
+            
+            resultsDiv.style.display = 'block';
+        }
+
+        function resetQuiz() {
+            userAnswers = [];
+            
+            // Remove all styling from options
+            const allOptions = document.querySelectorAll('.options li');
+            allOptions.forEach(option => {
+                option.classList.remove('selected', 'correct', 'incorrect');
+            });
+            
+            // Hide results and reset buttons
+            document.getElementById('results').style.display = 'none';
+            document.getElementById('submitBtn').style.display = 'inline-block';
+            document.getElementById('resetBtn').style.display = 'none';
+        }
+
+        // Load quiz when page loads
+        window.onload = function() {
+            loadQuiz();
+        };
+    </script>
+</body>
+</html>
