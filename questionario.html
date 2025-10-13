@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questionário - Física Térmica</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 4px solid #764ba2;
+            padding-bottom: 15px;
+        }
+
+        .instructions {
+            background: linear-gradient(120deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 5px solid #e17055;
+        }
+
+        .instructions p {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .question {
+            background: #f8f9fa;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .question:hover {
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            transform: translateX(5px);
+        }
+
+        .question-number {
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 1.05em;
+            margin-bottom: 15px;
+            font-weight: 500;
+            color: #2d3436;
+        }
+
+        .options {
+            margin-left: 20px;
+        }
+
+        .option {
+            margin: 10px 0;
+            padding: 12px;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+        }
+
+        .option:hover {
+            background: #e8eaf6;
+            border-color: #667eea;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .option label {
+            cursor: pointer;
+            display: inline;
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            margin-top: 30px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .result {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            font-size: 1.1em;
+        }
+
+        .result.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .result-excellent {
+            background: linear-gradient(120deg, #00b894 0%, #00cec9 100%);
+            color: white;
+        }
+
+        .result-good {
+            background: linear-gradient(120deg, #fdcb6e 0%, #ffeaa7 100%);
+            color: #2d3436;
+        }
+
+        .result-poor {
+            background: linear-gradient(120deg, #ff7675 0%, #fab1a0 100%);
+            color: white;
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            color: #2d3436;
+        }
+
+        .feedback-item {
+            margin: 15px 0;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #ddd;
+        }
+
+        .feedback-correct {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+
+        .feedback-incorrect {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+
+        .feedback-question {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2d3436;
+        }
+
+        .feedback-answer {
+            margin: 5px 0;
+        }
+
+        .feedback-explanation {
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 5px;
+            font-style: italic;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .question {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Questionário de Física Térmica</h1>
+
+        <div class="instructions">
+            <p><strong>Instruções:</strong> Responda às 15 questões abaixo marcando a alternativa correta. Ao final, clique em "Corrigir Questionário" para ver seu resultado e as explicações detalhadas.</p>
+        </div>
+
+        <form id="quizForm">
+            <!-- Questão 1 -->
+            <div class="question">
+                <div class="question-number">Questão 1</div>
+                <div class="question-text">Qual é o processo de transferência de calor em que a energia é levada de partícula para partícula no meio, sem que as partículas se desloquem?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q1a" name="q1" value="a">
+                        <label for="q1a">a) Convecção</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q1b" name="q1" value="b">
+                        <label for="q1b">b) Radiação</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q1c" name="q1" value="c">
+                        <label for="q1c">c) Condução</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q1d" name="q1" value="d">
+                        <label for="q1d">d) Evaporação</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q1e" name="q1" value="e">
+                        <label for="q1e">e) Sublimação</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questão 2 -->
+            <div class="question">
+                <div class="question-number">Questão 2</div>
+                <div class="question-text">Qual matemático estudou a transferência de calor por condução em uma barra e criou uma lei que leva seu nome?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q2a" name="q2" value="a">
+                        <label for="q2a">a) Isaac Newton</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2b" name="q2" value="b">
+                        <label for="q2b">b) Jean-Baptiste Joseph Fourier</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2c" name="q2" value="c">
+                        <label for="q2c">c) Albert Einstein</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2d" name="q2" value="d">
+                        <label for="q2d">d) Galileu Galilei</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q2e" name="q2" value="e">
+                        <label for="q2e">e) James Joule</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questão 3 -->
+            <div class="question">
+                <div class="question-number">Questão 3</div>
+                <div class="question-text">Na convecção, qual é a característica essencial que diferencia esse processo dos demais?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q3a" name="q3" value="a">
+                        <label for="q3a">a) Ocorre apenas no vácuo</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q3b" name="q3" value="b">
+                        <label for="q3b">b) A matéria também transita junto à energia</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q3c" name="q3" value="c">
+                        <label for="q3c">c) Depende apenas da condutividade térmica</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q3d" name="q3" value="d">
+                        <label for="q3d">d) Ocorre por meio de ondas eletromagnéticas</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q3e" name="q3" value="e">
+                        <label for="q3e">e) Não necessita de diferença de temperatura</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questão 4 -->
+            <div class="question">
+                <div class="question-number">Questão 4</div>
+                <div class="question-text">Por que os aparelhos de ar-condicionado devem preferencialmente estar na parte de cima da sala?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q4a" name="q4" value="a">
+                        <label for="q4a">a) Porque o ar quente é mais denso e desce</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q4b" name="q4" value="b">
+                        <label for="q4b">b) Porque o ar frio é mais denso e desce, enquanto o ar quente sobe</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q4c" name="q4" value="c">
+                        <label for="q4c">c) Para facilitar a instalação elétrica</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q4d" name="q4" value="d">
+                        <label for="q4d">d) Porque a radiação térmica é mais eficiente no teto</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q4e" name="q4" value="e">
+                        <label for="q4e">e) Para evitar a condensação do vapor de água</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questão 5 -->
+            <div class="question">
+                <div class="question-number">Questão 5</div>
+                <div class="question-text">Qual é o único processo de transferência de calor que pode ocorrer no vácuo?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q5a" name="q5" value="a">
+                        <label for="q5a">a) Condução</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q5b" name="q5" value="b">
+                        <label for="q5b">b) Convecção</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q5c" name="q5" value="c">
+                        <label for="q5c">c) Radiação</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q5d" name="q5" value="d">
+                        <label for="q5d">d) Evaporação</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q5e" name="q5" value="e">
+                        <label for="q5e">e) Fusão</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questão 6 -->
+            <div class="question">
+                <div class="question-number">Questão 6</div>
+                <div class="question-text">As câmeras termais funcionam detectando qual tipo de radiação emitida pelos corpos?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q6a" name="q6" value="a">
+                        <label for="q6a">a) Raios X</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q6b" name="q6" value="b">
+                        <label for="q6b">b) Luz ultravioleta</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q6c" name="q6" value="c">
+                        <label for="q6c">c) Infravermelho</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q6d" name="q6" value="d">
+                        <label for="q6d">d) Micro-ondas</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q6e" name="q6" value="e">
+                        <label for="q6e">e) Raios gama</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questão 7 -->
+            <div class="question">
+                <div class="question-number">Questão 7</div>
+                <div class="question-text">Qual é a característica da fase sólida da matéria?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q7a" name="q7" value="a">
+                        <label for="q7a">a) As partículas possuem altíssimo grau de liberdade para se moverem</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q7b" name="q7" value="b">
+                        <label for="q7b">b) As partículas não possuem grande liberdade para se mover, estando fortemente ligadas</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q7c" name="q7" value="c">
+                        <label for="q7c">c) Não possui volume definido</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q7d" name="q7" value="d">
+                        <label for="q7d">d) Assume a forma do recipiente</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q7e" name="q7" value="e">
+                        <label for="q7e">e) As partículas estão fracamente ligadas</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questão 8 -->
+            <div class="question">
+                <div class="question-number">Questão 8</div>
+                <div class="question-text">O que é calor latente?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q8a" name="q8" value="a">
+                        <label for="q8a">a) Calor que sempre aumenta a temperatura do corpo</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q8b" name="q8" value="b">
+                        <label for="q8b">b) Calor trocado durante mudança de fase, sem variação de temperatura</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q8c" name="q8" value="c">
+                        <label for="q8c">c) Calor que só existe em metais</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q8d" name="q8" value="d">
+                        <label for="q8d">d) Calor que não pode ser medido</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q8e" name="q8" value="e">
+                        <label for="q8e">e) Calor gerado apenas por radiação</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questão 9 -->
+            <div class="question">
+                <div class="question-number">Questão 9</div>
+                <div class="question-text">Qual é a temperatura de fusão da água em condições normais de pressão?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q9a" name="q9" value="a">
+                        <label for="q9a">a) 100 ºC</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q9b" name="q9" value="b">
+                        <label for="q9b">b) -10 ºC</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q9c" name="q9" value="c">
+                        <label for="q9c">c) 0 ºC</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q9d" name="q9" value="d">
+                        <label for="q9d">d) 50 ºC</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q9e" name="q9" value="e">
+                        <label for="q9e">e) 25 ºC</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questão 10 -->
+            <div class="question">
+                <div class="question-number">Questão 10</div>
+                <div class="question-text">Como são chamados os processos em que o corpo perde calor?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q10a" name="q10" value="a">
+                        <label for="q10a">a) Endotérmicos</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q10b" name="q10" value="b">
+                        <label for="q10b">b) Exotérmicos</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q10c" name="q10" value="c">
+                        <label for="q10c">c) Isotérmicos</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q10d" name="q10" value="d">
+                        <label for="q10d">d) Adiabáticos</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q10e" name="q10" value="e">
+                        <label for="q10e">e) Isobáricos</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questão 11 -->
+            <div class="question">
+                <div class="question-number">Questão 11</div>
+                <div class="question-text">Qual é o ponto de ebulição da água em condições normais de pressão?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q11a" name="q11" value="a">
+                        <label for="q11a">a) 0 ºC</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q11b" name="q11" value="b">
+                        <label for="q11b">b) 50 ºC</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q11c" name="q11" value="c">
+                        <label for="q11c">c) 100 ºC</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q11d" name="q11" value="d">
+                        <label for="q11d">d) 150 ºC</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q11e" name="q11" value="e">
+                        <label for="q11e">e) 25 ºC</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questão 12 -->
+            <div class="question">
+                <div class="question-number">Questão 12</div>
+                <div class="question-text">Qual é a diferença entre ebulição e evaporação?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q12a" name="q12" value="a">
+                        <label for="q12a">a) Não há diferença, são sinônimos</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q12b" name="q12" value="b">
+                        <label for="q12b">b) A ebulição ocorre rapidamente em temperatura específica, a evaporação é lenta e não precisa do ponto de ebulição</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q12c" name="q12" value="c">
+                        <label for="q12c">c) A evaporação só ocorre em metais</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q12d" name="q12" value="d">
+                        <label for="q12d">d) A ebulição é um processo endotérmico e a evaporação é exotérmica</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q12e" name="q12" value="e">
+                        <label for="q12e">e) A ebulição ocorre apenas no vácuo</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questão 13 -->
+            <div class="question">
+                <div class="question-number">Questão 13</div>
+                <div class="question-text">O que é sublimação?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q13a" name="q13" value="a">
+                        <label for="q13a">a) Mudança de fase de líquido para gasoso</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q13b" name="q13" value="b">
+                        <label for="q13b">b) Mudança de fase de sólido para líquido</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q13c" name="q13" value="c">
+                        <label for="q13c">c) Mudança de fase direta entre sólido e gasoso, sem passar pela fase líquida</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q13d" name="q13" value="d">
+                        <label for="q13d">d) Processo de aquecimento de metais</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q13e" name="q13" value="e">
+                        <label for="q13e">e) Transferência de calor por radiação</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questão 14 -->
+            <div class="question">
+                <div class="question-number">Questão 14</div>
+                <div class="question-text">Segundo a Lei da Conservação da Energia, o que acontece com a energia?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q14a" name="q14" value="a">
+                        <label for="q14a">a) A energia pode ser criada e destruída</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q14b" name="q14" value="b">
+                        <label for="q14b">b) A energia nunca desaparece, ela é sempre convertida em outros tipos de energia</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q14c" name="q14" value="c">
+                        <label for="q14c">c) A energia só existe em forma térmica</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q14d" name="q14" value="d">
+                        <label for="q14d">d) A energia desaparece quando um corpo esfria</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q14e" name="q14" value="e">
+                        <label for="q14e">e) A energia só pode ser medida em máquinas térmicas</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Questão 15 -->
+            <div class="question">
+                <div class="question-number">Questão 15</div>
+                <div class="question-text">Quem foi Heron de Alexandria e qual foi sua contribuição?</div>
+                <div class="options">
+                    <div class="option">
+                        <input type="radio" id="q15a" name="q15" value="a">
+                        <label for="q15a">a) Um físico que descobriu a radiação térmica</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q15b" name="q15" value="b">
+                        <label for="q15b">b) Um inventor da Grécia Antiga que criou um aparato usando vapor para girar uma esfera metálica</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q15c" name="q15" value="c">
+                        <label for="q15c">c) O criador da Lei de Fourier</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q15d" name="q15" value="d">
+                        <label for="q15d">d) Um matemático que estudou a convecção</label>
+                    </div>
+                    <div class="option">
+                        <input type="radio" id="q15e" name="q15" value="e">
+                        <label for="q15e">e) O inventor do motor a combustão</label>
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="corrigirQuestionario()">Corrigir Questionário</button>
+        </form>
+
+        <div id="result" class="result"></div>
+
+        <div class="nav-buttons">
+            <a href="conteudo.html" class="btn">Voltar ao Conteúdo</a>
+        </div>
+    </div>
+
+    <script>
+        // Gabarito com as respostas corretas e explicações
+        const gabarito = {
+            q1: {
+                correta: 'c',
+                explicacao: 'A condução é o processo em que a energia é transferida de partícula para partícula no meio, sem que as partículas se desloquem. As partículas apenas vibram, transferindo energia para as vizinhas.'
+            },
+            q2: {
+                correta: 'b',
+                explicacao: 'Jean-Baptiste Joseph Fourier estudou a transferência de calor por condução em uma barra e criou a Lei de Fourier, que relaciona a diferença de temperatura com o fluxo de energia térmica.'
+            },
+            q3: {
+                correta: 'b',
+                explicacao: 'Na convecção, a matéria também transita junto à energia. Esse é o diferencial desse processo, pois há movimento de partículas que carregam consigo energia térmica.'
+            },
+            q4: {
+                correta: 'b',
+                explicacao: 'O ar frio é mais denso e irá se deslocar para baixo, enquanto o ar quente, menos denso, sobe. Por isso, os aparelhos de ar-condicionado devem estar na parte de cima da sala para aproveitar esse fenômeno de convecção.'
+            },
+            q5: {
+                correta: 'c',
+                explicacao: 'A radiação é o único processo de transferência de calor que pode ocorrer no vácuo, pois acontece por meio de ondas eletromagnéticas que não necessitam de meio material para se propagar.'
+            },
+            q6: {
+                correta: 'c',
+                explicacao: 'As câmeras termais detectam radiação na faixa do infravermelho. Todo corpo emite ondas eletromagnéticas nessa faixa de frequência, e corpos mais quentes emitem mais radiação térmica.'
+            },
+            q7: {
+                correta: 'b',
+                explicacao: 'Na fase sólida, as partículas não possuem grande liberdade para se mover, estando fortemente ligadas umas às outras. Elas apenas vibram em torno de uma determinada posição.'
+            },
+            q8: {
+                correta: 'b',
+                explicacao: 'O calor latente é o calor trocado durante uma mudança de fase, sem que haja variação de temperatura. Ele é usado para mudar o nível de agregação das partículas.'
+            },
+            q9: {
+                correta: 'c',
+                explicacao: 'A temperatura de fusão da água em condições normais de pressão é 0 ºC. Nessa temperatura, o gelo derrete e se transforma em água líquida, ou a água líquida se transforma em gelo.'
+            },
+            q10: {
+                correta: 'b',
+                explicacao: 'Processos em que o corpo perde calor são chamados de exotérmicos. Já os processos em que o corpo recebe calor são chamados de endotérmicos.'
+            },
+            q11: {
+                correta: 'c',
+                explicacao: 'O ponto de ebulição da água em condições normais de pressão é 100 ºC. Nessa temperatura, a água líquida vaporiza rapidamente.'
+            },
+            q12: {
+                correta: 'b',
+                explicacao: 'A ebulição é um processo que ocorre rapidamente em uma temperatura específica (ponto de ebulição). Já a evaporação é um processo lento que não precisa alcançar o ponto de ebulição.'
+            },
+            q13: {
+                correta: 'c',
+                explicacao: 'Sublimação é a mudança de fase direta entre a fase sólida e a fase gasosa, sem passar pela fase líquida. Isso ocorre em condições de pressão específicas.'
+            },
+            q14: {
+                correta: 'b',
+                explicacao: 'Segundo a Lei da Conservação da Energia, a energia nunca desaparece, ela é sempre convertida em outros tipos de energia. A energia pode ser dissipada para outro sistema, mas não desaparece do universo.'
+            },
+            q15: {
+                correta: 'b',
+                explicacao: 'Heron de Alexandria foi um inventor da Grécia Antiga (século I d.C.) que criou um aparato que utilizava vapor, gerado pelo aquecimento da água, para girar uma esfera metálica, convertendo energia térmica em energia cinética.'
+            }
+        };
+
+        function corrigirQuestionario() {
+            const form = document.getElementById('quizForm');
+            let acertos = 0;
+            let erros = 0;
+            let feedbackHTML = '<div class="feedback"><h2 style="text-align: center; margin-bottom: 20px;">Feedback Detalhado</h2>';
+
+            // Verifica cada questão
+            for (let i = 1; i <= 15; i++) {
+                const questao = `q${i}`;
+                const respostaSelecionada = form.elements[questao].value;
+                const respostaCorreta = gabarito[questao].correta;
+
+                if (!respostaSelecionada) {
+                    alert(`Por favor, responda a questão ${i} antes de corrigir!`);
+                    return;
+                }
+
+                const isCorreta = respostaSelecionada === respostaCorreta;
+                if (isCorreta) {
+                    acertos++;
+                } else {
+                    erros++;
+                }
+
+                // Monta o feedback
+                const feedbackClass = isCorreta ? 'feedback-correct' : 'feedback-incorrect';
+                const statusIcon = isCorreta ? '✓' : '✗';
+                const statusText = isCorreta ? 'CORRETA' : 'INCORRETA';
+
+                feedbackHTML += `
+                    <div class="feedback-item ${feedbackClass}">
+                        <div class="feedback-question">${statusIcon} Questão ${i}: ${statusText}</div>
+                        ${!isCorreta ? `<div class="feedback-answer">Sua resposta: <strong>${respostaSelecionada.toUpperCase()}</strong></div>` : ''}
+                        <div class="feedback-answer">Resposta correta: <strong>${respostaCorreta.toUpperCase()}</strong></div>
+                        <div class="feedback-explanation"><strong>Explicação:</strong> ${gabarito[questao].explicacao}</div>
+                    </div>
+                `;
+            }
+
+            feedbackHTML += '</div>';
+
+            // Calcula a porcentagem
+            const porcentagem = (acertos / 15) * 100;
+
+            // Define a classe do resultado baseado na performance
+            let resultClass = 'result-poor';
+            let mensagem = 'Você precisa estudar mais! Revise o conteúdo e tente novamente.';
+            
+            if (porcentagem >= 80) {
+                resultClass = 'result-excellent';
+                mensagem = 'Excelente! Você domina o conteúdo!';
+            } else if (porcentagem >= 60) {
+                resultClass = 'result-good';
+                mensagem = 'Bom trabalho! Continue estudando para melhorar ainda mais.';
+            }
+
+            // Exibe o resultado
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = `result show ${resultClass}`;
+            resultDiv.innerHTML = `
+                <h2 style="margin-bottom: 15px;">Resultado do Questionário</h2>
+                <p style="font-size: 1.3em; margin: 10px 0;"><strong>Acertos:</strong> ${acertos} de 15</p>
+                <p style="font-size: 1.3em; margin: 10px 0;"><strong>Porcentagem:</strong> ${porcentagem.toFixed(1)}%</p>
+                <p style="font-size: 1.2em; margin-top: 15px;">${mensagem}</p>
+                ${feedbackHTML}
+            `;
+
+            // Rola a página até o resultado
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+</html>
+
