@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>CÁLCULO DE NOTA PARA APROVAÇÃO</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff5f5;
+      color: #660000;
+      margin: 40px;
+    }
+    h1 {
+      color: #990000;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+    input[type="number"] {
+      width: 100px;
+      padding: 5px;
+      border: 1px solid #cc0000;
+      border-radius: 4px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #cc0000;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #990000;
+    }
+    .resultado {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #cc0000;
+    }
+    form {
+      background-color: #ffe6e6;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #cc0000;
+      max-width: 400px;
+    }
+  </style>
+</head>
+<body>
+  <h1>CÁLCULO DE NOTA PARA APROVAÇÃO</h1>
+  <form id="notaForm">
+    <label>1º BM: <input type="number" step="0.1" min="0.0" max="10.0" required></label>
+    <label>2º BM: <input type="number" step="0.1" min="0.0" max="10.0" required></label>
+    <label>3º BM: <input type="number" step="0.1" min="0.0" max="10.0" required></label>
+    <label>N1 4º BM: <input type="number" step="0.1" min="0.0" max="10.0" required></label>
+    <label>N2 4º BM: <input type="number" step="0.1" min="0.0" max="10.0"></label>
+    <label>Simulado/Ponto Olímpico/TM: <input type="number" step="0.1" min="0.0" max="10.0"></label>
+    <button type="button" onclick="calcularNota()">Calcular</button>
+  </form>
+
+  <div class="resultado" id="resultado"></div>
+
+  <script>
+    function calcularNota() {
+      const inputs = document.querySelectorAll('#notaForm input');
+      let valores = [];
+
+      for (let i = 0; i < inputs.length; i++) {
+        const valor = parseFloat(inputs[i].value);
+        if (inputs[i].required && isNaN(valor)) {
+          alert("Preencha todos os campos obrigatórios corretamente.");
+          return;
+        }
+        if (!isNaN(valor) && (valor < 0.0 || valor > 10.0)) {
+          alert("Os valores devem estar entre 0,0 e 10,0.");
+          return;
+        }
+        valores.push(isNaN(valor) ? 0.0 : valor);
+      }
+
+      let notaFinal;
+      let resultadoTexto;
+
+      if (inputs[4].value === "") {
+        // Calcular valor necessário para N2 4º BM para atingir nota 6
+        const n2Necessario = 2 * (24 - valores[0] - valores[1] - valores[2] - valores[5]) - valores[3]
+        if (n2Necessario < 0 || n2Necessario > 10) {
+          resultadoTexto = `Não é possível atingir nota 6 com os valores informados.`;
+        } else {
+          resultadoTexto = `Para atingir a nota 6,0, o valor necessário para N2 4º BM é: ${n2Necessario.toFixed(1)}`;
+        }
+      } else {
+        notaFinal = (valores[0] + valores[1] + valores[2] + ((valores[3] + valores[4]) / 2) + valores[5])/4;
+        resultadoTexto = `Nota final: ${notaFinal.toFixed(1)}`;
+      }
+
+      document.getElementById("resultado").textContent = resultadoTexto;
+    }
+  </script>
+</body>
+</html>
