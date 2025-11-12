@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Eletrostática Interativa - Tataue</title>
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin-bottom: 5px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        h2 {
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        article {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 5px solid #ffc107;
+            background-color: #fffaf0;
+            border-radius: 4px;
+        }
+
+        /* Estilo para a Tabela de Condutores/Isolantes */
+        .tabela-container {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #e9ecef;
+            color: #333;
+        }
+
+        /* Estilo do Questionário */
+        .questao {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+
+        .questao p strong {
+            color: #007bff;
+        }
+
+        .resposta-container {
+            margin-top: 10px;
+        }
+
+        .resposta {
+            background-color: #28a745;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 5px;
+            font-weight: bold;
+            display: none; /* ESCONDIDA POR PADRÃO */
+        }
+
+        .btn-resposta {
+            background-color: #ffc107;
+            color: #333;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-resposta:hover {
+            background-color: #e0a800;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #333;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔬 Eletrostática: Cargas, Condutores e Magia Elétrica!</h1>
+        <p>Tudo o que você precisa saber sobre as cargas elétricas em repouso.</p>
+    </header>
+
+    <main>
+        <section id="resumo">
+            <h2>💡 Resumo: O Básico da Eletrostática</h2>
+
+            <article>
+                <h3>Cargas Elétricas e Interação</h3>
+                <p>A eletrostática estuda as interações entre cargas elétricas em repouso. A carga fundamental é a elementar ($e \approx 1,602 \times 10^{-19} \text{ C}$).</p>
+                <ul>
+                    <li>Cargas opostas se **atraem**.</li>
+                    <li>Cargas iguais se **repelem**. </li>
+                    <li>Um corpo eletrizado possui excesso ou falta de elétrons.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3>Condutores e Isolantes</h3>
+                <p>A diferença crucial está na **mobilidade dos elétrons**.</p>
+                <div class="tabela-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Característica</th>
+                                <th>Condutores</th>
+                                <th>Isolantes (Dielétricos)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>**Elétrons**</td>
+                                <td>Movimento livre (elétrons livres)</td>
+                                <td>Elétrons fortemente ligados (dificulta o movimento)</td>
+                            </tr>
+                            <tr>
+                                <td>**Exemplos**</td>
+                                <td>Cobre, Alumínio, Água com sal.</td>
+                                <td>Plástico, Borracha, Vidro, Madeira Seca. </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+
+            <article>
+                <h3>Processos de Eletrização</h3>
+                <ol>
+                    <li>
+                        **Eletrização por Atrito:** Ocorre ao esfregar dois materiais (geralmente isolantes). Ficam com **cargas de sinais opostos**.
+                    </li>
+                    <li>
+                        **Eletrização por Contato:** Um corpo eletrizado toca outro. Ficam com **cargas de mesmo sinal**.
+                    </li>
+                    <li>
+                        **Eletrização por Indução:** Aproximação de um corpo carregado (indutor) a um condutor (induzido), geralmente com **aterramento**. Ficam com **cargas de sinais opostos** ao indutor.
+                    </li>
+                </ol>
+            </article>
+        </section>
+
+        <section id="questionario">
+            <h2>🧠 Questionário Interativo (15 Questões)</h2>
+            <p>Teste seus conhecimentos. Clique em "Ver Resposta" para conferir!</p>
+
+            </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Eletrostática Interativa - Conteúdo para Estudos</p>
+    </footer>
+
+    <script>
+        // Array de objetos contendo as 15 perguntas e suas respostas.
+        const questoes = [
+            {
+                pergunta: "1. Qual é a unidade de medida da carga elétrica no Sistema Internacional (SI)?",
+                resposta: "Coulomb (C)"
+            },
+            {
+                pergunta: "2. Um corpo que perde elétrons fica carregado positiva ou negativamente?",
+                resposta: "Positivamente, pois terá um excesso de prótons (cargas positivas)."
+            },
+            {
+                pergunta: "3. Qual é o processo de eletrização onde os corpos ficam com cargas de sinais opostos?",
+                resposta: "Eletrização por Atrito."
+            },
+            {
+                pergunta: "4. Dê um exemplo de material condutor amplamente utilizado em fiação.",
+                resposta: "Cobre ou Alumínio."
+            },
+            {
+                pergunta: "5. O que é a polarização de cargas que ocorre na eletrização por indução?",
+                resposta: "É a separação de cargas (prótons e elétrons) dentro do corpo induzido devido à aproximação do indutor."
+            },
+            {
+                pergunta: "6. Na eletrização por contato entre duas esferas idênticas, se uma tem carga $+2\mu \text{C}$ e a outra $-6\mu \text{C}$, qual será a carga final de cada uma após a separação?",
+                resposta: "$-2\mu \text{C}$. (Cálculo: $Q_{final} = (+2 - 6)/2 = -4/2 = -2\mu \text{C}$)"
+            },
+            {
+                pergunta: "7. Materiais isolantes também são chamados de...?",
+                resposta: "Dielétricos."
+            },
+            {
+                pergunta: "8. O que acontece com duas cargas negativas quando são aproximadas?",
+                resposta: "Elas se repelem, pois cargas de mesmo sinal sempre se repelem."
+            },
+            {
+                pergunta: "9. Qual dos processos de eletrização **não** requer contato direto entre o indutor e o induzido para a eletrização final (apenas aterramento)?",
+                resposta: "Eletrização por Indução."
+            },
+            {
+                pergunta: "10. O que significa dizer que um corpo está em equilíbrio eletrostático?",
+                resposta: "Significa que não há movimento ordenado de cargas elétricas e o campo elétrico em seu interior é nulo."
+            },
+            {
+                pergunta: "11. A eletrização por atrito pode ocorrer com dois corpos metálicos?",
+                resposta: "Não, pois os elétrons livres se redistribuiriam facilmente, neutralizando a eletrização assim que o atrito parasse."
+            },
+            {
+                pergunta: "12. O corpo humano é um bom condutor ou isolante?",
+                resposta: "Condutor, devido à grande quantidade de água e sais."
+            },
+            {
+                pergunta: "13. O que é a carga elementar?",
+                resposta: "É o valor da menor carga elétrica livre na natureza, pertencente ao elétron e ao próton."
+            },
+            {
+                pergunta: "14. Na eletrização por contato, os corpos eletrizados sempre ficam com o mesmo módulo de carga?",
+                resposta: "Apenas se os corpos condutores forem idênticos (mesmo formato e material)."
+            },
+            {
+                pergunta: "15. Qual a função principal da blindagem eletrostática (Gaiola de Faraday)?",
+                resposta: "Proteger o interior de um condutor da influência de campos elétricos externos."
+            }
+        ];
+
+        const questionarioDiv = document.getElementById('questionario');
+
+        /**
+         * Função que gera o HTML das questões e insere no DOM.
+         */
+        function gerarQuestionario() {
+            const questoesHtml = questoes.map((item, index) => `
+                <div class="questao" id="q${index + 1}">
+                    <p><strong>${item.pergunta}</strong></p>
+                    <div class="resposta-container">
+                        <button class="btn-resposta" onclick="mostrarResposta(${index + 1})">Ver Resposta</button>
+                        <div class="resposta" id="r${index + 1}">${item.resposta}</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Adiciona todas as questões ao container
+            questionarioDiv.innerHTML += questoesHtml;
+        }
+
+        /**
+         * Função que exibe a resposta da questão quando o botão é clicado.
+         * @param {number} id - O ID da questão (1 a 15).
+         */
+        function mostrarResposta(id) {
+            const respostaElement = document.getElementById(`r${id}`);
+            const botaoElement = respostaElement.previousElementSibling;
+
+            if (respostaElement.style.display === 'block') {
+                // Esconde a resposta
+                respostaElement.style.display = 'none';
+                botaoElement.textContent = 'Ver Resposta';
+                botaoElement.style.backgroundColor = '#ffc107';
+            } else {
+                // Mostra a resposta
+                respostaElement.style.display = 'block';
+                botaoElement.textContent = 'Ocultar Resposta';
+                botaoElement.style.backgroundColor = '#28a745'; // Mudar cor quando ativa
+            }
+        }
+
+        // Inicializa o questionário ao carregar a página
+        document.addEventListener('DOMContentLoaded', gerarQuestionario);
+    </script>
+</body>
+</html>
